@@ -1,6 +1,10 @@
 import React, { useState,useEffect } from 'react'
 import Navbar from '../../Navbar/Navbar';
 import { rmsRequest,Totallocation } from '../../../api/index'
+import './OtherReq.css'
+import svg from '../../Images/phoneicon.png'
+import { BsFillChatSquareQuoteFill } from 'react-icons/bs';
+import Footer from '../../Navbar/Footer'
 
 
 function OtherRequest() {
@@ -37,30 +41,13 @@ function OtherRequest() {
     }
     return (
         <>
-            <div className="otherrequestcontainer" >
+            <div className="generatorlogcontainer" >
                 <Navbar />
-                <div >
-
-                    <div className="col " style={{ margin: "75px auto", width: "630px" }}>
-                        <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
-                        <header className="card-header" style={{ background: "rgba(0,0,0,0.2)" }}>
-                                <h4 className="card-title mt-2" >Other Request</h4>
-                            </header>
-                            <article className="card-body" >
-                                <form style={{margin:"0px 20px 0px 15px"}}>
-                                    {/* <h3 className="card-title mt-4">Other Request</h3><br /> */}
+                <div className='other_req'>
+                <form style={{margin:"0px 20px 0px 15px"}}>
+                <h3>Other Request <BsFillChatSquareQuoteFill style={{margin:"0 0 -9px 0",fontSize:"30px"}}/></h3>
                                     <br/>
-                                    {/* <div className="form-group">
-                                        <label>Warehouse  <span style={{ color: "red" }}>*</span></label>
-                                       <select className="form-control" id="locationid" style={{height:"35px"}}>
-                                        <option value='' hidden>Select the warehouse</option>
-                                                  {
-                                                    totallocation.map((item,index)=>
-                                                    <option key={index} value={item.WHid}>{item.WHname}</option>)
-                                                    
-                                                  }
-                                       </select>
-                                    </div> */}
+                                    
 
                                     <div className="form-group">
                                         <label>Activity <span style={{ color: "red" }}>*</span></label>
@@ -94,16 +81,17 @@ function OtherRequest() {
 
 
                                     <div className="form-group" >
-                                        <button type="submit" className="btn btn-primary float-right mb-4 mt-3" onClick={handleClick} id="subnitbtn">Submit</button>
-                                        <button type="submit" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
+                                        <button type="submit" className="btn dark_btn float-right mb-4 mt-3" onClick={handleClick} id="subnitbtn">Submit</button>
+                                        <button type="submit" className="btn maroon_btn mr-4 float-right mb-4 mt-3">Reset</button>
                                     </div>
-                                </form>
-                            </article>
-                        </div>
+                                </form> 
+                                <div className='svg_div'>
+                        <img src={svg} />
                     </div>
                 </div>
-            </div>
 
+            </div>
+<Footer/>
         </>
     )
 }

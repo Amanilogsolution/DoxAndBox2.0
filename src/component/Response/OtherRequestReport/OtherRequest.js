@@ -4,6 +4,7 @@ import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { RequestReport } from '../../../api/index';
 import Navbar from '../../Navbar/Navbar';
+import Footer from '../../Navbar/Footer'
 import '../response.css';
 
 
@@ -30,6 +31,34 @@ const columns = [
     sortable: true
   }
 ];
+const customStyles = {
+  title: {
+    style: {
+      fontColor: 'red',
+      fontWeight: '900',
+
+    }
+  },
+  rows: {
+    style: {
+      minHeight: '35px',
+    }
+  },
+  headCells: {
+    style: {
+      fontSize: '14px',
+      background: '#900d10',
+      color: 'white',
+    },
+  },
+  cells: {
+    style: {
+      fontSize: '14px',
+      background: 'rgb(242,242,242)',
+      borderBottom: "1px solid silver",
+    },
+  },
+};
 
 
 function OtherReport() {
@@ -71,12 +100,13 @@ function OtherReport() {
   return (
     <div className="InvoicesinProgress">
       <Navbar />
+      <div className='reports_div'>
       {loading?(
-                  <h1 style={{display:"flex",justifyContent:"center",alignItems:"center" }}>Loading...</h1>
+                   <div class="loader"></div>
 
       ):(
       <div className=" reportdata"  >
-        <h4 className="text-dark">Shredding Request Report</h4>
+        <h3 className="my-4">Shredding Request Report</h3>
      
 
         <div className="DataTable">
@@ -85,11 +115,13 @@ function OtherReport() {
               columns={columns}
               data={data}
               pagination
+              customStyles={customStyles}
             />
           </DataTableExtensions>
         </div>
       </div>
       )}
+      </div>
     </div>
   )
 }

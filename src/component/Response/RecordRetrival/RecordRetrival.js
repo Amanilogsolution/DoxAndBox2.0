@@ -42,7 +42,10 @@ const columns = [
 ];
 
 
+
 function RecordRetrivalReport() {
+
+  
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [toogle,setToggle]=useState(true)
@@ -81,12 +84,13 @@ function RecordRetrivalReport() {
   return (
     <div className="InvoicesinProgress">
       <Navbar />
+      <div className='reports_div'>
       {loading?(
                   <h1 style={{display:"flex",justifyContent:"center",alignItems:"center" }}>Loading...</h1>
 
       ):(
       <div className=" reportdata"  >
-        <h4 className="text-dark">record Retrival</h4>
+        <h3 className="text-dark">record Retrival</h3>
      
 
         <div className="DataTable">
@@ -95,11 +99,13 @@ function RecordRetrivalReport() {
               columns={columns}
               data={data}
               pagination
+              
             />
           </DataTableExtensions>
         </div>
       </div>
       )}
+      </div>  
     </div>
   )
 }

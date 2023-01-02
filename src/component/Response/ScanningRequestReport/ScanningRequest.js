@@ -76,11 +76,12 @@ function ScanningRequest() {
   return (
     <div className="InvoicesinProgress">
       <Navbar />
+      <div className='reports_div'>
       {loading?(
                   <h1 style={{display:"flex",justifyContent:"center",alignItems:"center" }}>Loading...</h1>
       ):(
       <div className=" reportdata"  >
-        <h4 className="text-dark">Scanning Request Report</h4>
+        <h3 className="text-dark">Scanning Request Report</h3>
      
 
         <div className="DataTable">
@@ -94,6 +95,7 @@ function ScanningRequest() {
         </div>
       </div>
       )}
+      </div>
     </div>
   )
 }

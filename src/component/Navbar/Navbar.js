@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import SideBar from './Sidebar';
-import './navbar.css';
+import './Navbar2.css';
 import LOGOimg from '../../assets/doxlogo.png'
 import { Totallocation } from '../../api/index'
+import { HiMenu } from 'react-icons/hi';
+import { ImLocation } from 'react-icons/im';
+import logo from '../Images/logoWithoutText.png'
 
 
 function Navbar() {
@@ -46,52 +49,35 @@ function Navbar() {
   };
   return (
     <div>
-      <nav className="topnav ">
-        <div className="navicon">
-          <a href="#" onClick={handleOn}>
-            <svg xmlns="http://www.w3.org/2000/svg" height="45" width="45" fill="#333"><path d="M6 36V33H42V36ZM6 25.5V22.5H42V25.5ZM6 15V12H42V15Z" /></svg>
-          </a>
-        </div>
 
-        <div className="navlogo">
-          <div style={{ height: "60px", marginTop: "-13px" }}>
-            <img src={LOGOimg} style={{ height: "89%" }} alt="dox and box logo" /> &nbsp;Dox and Box</div>
-        </div>
 
-         <div className="loginname">
-           <div>
-             &nbsp;{localStorage.getItem('User_Name')}</div>
-         </div>
-
-        <div class="profilediv btn-group ">
-          <i className="material-icons">person</i>
-          <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ background: "transparent", border: "none" }}>
-            Account
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="/Profile">Profile</a>
-            <a class="dropdown-item" href="/Changepassword">Change Password</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" onClick={handleClick} href="#">Logout</a>
+      <nav className='Navbar'>
+        <div className='brand_slidericon d-flex'>
+          <HiMenu onClick={handleOn} style={{ cursor: "pointer", color: "white", fontSize: "37px" }} />
+          <div className='d-flex justify-content-center w-75 mt-1'>
+            <img style={{width:'50px',height:"50px",margin:"-7px 0 0 0"}} src={logo} />
+            <p>DOX & BOX</p>
           </div>
         </div>
+        <div className='nav_content '>
+          <div className='mx-5' style={{borderRight:"1px solid",padding:"0 20px"}}>
+            &nbsp;{localStorage.getItem('User_Name')}
+          </div>
+          <div className="profilediv2  ">
+            <ImLocation style={{fontSize:"20px",margin:"0 0 -3px 0"}}/>
+            <select style={{ border: "none", background: "none" }} onChange={handleChange}>
+              <option hidden>{localStorage.getItem('Wh_name')} </option>
 
+              {show ?
+                totallocation.map((ele) => (
+                  <option key={ele.WHid} value={`${ele.WHid},${ele.WHname}`} style={{ fontSize: "17px" }}>{ele.WHname} </option>
+                )) : null
+              }
 
-        <div className="profilediv2 mr-5">
-          <select style={{ border: "none", background: "none" }} onChange={handleChange}>
-            <option hidden>{localStorage.getItem('Wh_name')} </option>
+            </select>
 
-            {show ?
-              totallocation.map((ele) => (
-                <option key={ele.WHid} value={`${ele.WHid},${ele.WHname}`} style={{ fontSize: "17px" }}>{ele.WHname} </option>
-              )) : null
-            }
-
-
-          </select>
-
+          </div>
         </div>
-
       </nav>
       <SideBar openClass={on} />
     </div>

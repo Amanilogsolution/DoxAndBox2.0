@@ -1,18 +1,20 @@
-/* .InvoicesinProgress{
-    border: 2px solid green;
-} */
+.InvoicesinProgress{
+    min-height: 100vh;
+    width: 100%;
+    background: url('../Images/bg2.webp');
+    background-size: 100% 100%;
+    /* border: 1px solid black; */
+}
+.reports_div{
+    padding: 70px 70px;
+    /* border: 1px solid red; */
+}
 .reportdata{
-    width:97%;
-    /* margin: 15px 30px;*/
-    margin-top: 20px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    /* border: 2px solid red; */
+    /* border: 1px solid black; */
 }
 
 
-@media screen and (min-width:1500px){
+/* @media screen and (min-width:1500px){
     .reportdata{
        margin-right: 10%;
     }
@@ -32,5 +34,5 @@
         width:100%;
         margin: 0;
     }
-}
+} */
 

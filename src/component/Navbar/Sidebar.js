@@ -1,7 +1,10 @@
 import React, { useState,useEffect } from 'react';
-import './navbar.css'
+import './Sidebar.css'
 import { Totallocation } from '../../api/index'
-
+import { MdDashboard,MdReport,MdArrowDropDown,MdEditNote } from 'react-icons/md';
+import { BsFillChatSquareQuoteFill } from 'react-icons/bs';
+import { ImLocation } from 'react-icons/im';
+import { RiUserFill } from 'react-icons/ri';
 
 
 const SideBar = ({ openClass }) => {
@@ -75,28 +78,22 @@ const SideBar = ({ openClass }) => {
     <nav className={openClass === true ? 'closeslidernav slidernav' : ' slidernav'}>
       <ul className="navlist">
         <li>
-          <a className="menu-item" href="/Dashboard">
-            <i className="material-icons">dashboard</i>
-            &nbsp;Dashboard
+          <a className="menu-item" href="/Dashboard" style={{padding:"10px 130px 10px 0"}}>
+            <MdDashboard style={{fontSize:"20px" ,margin:"-2px 5px"}}/>Dashboard
           </a>
         </li>
 
-        {/* <li>
-          <a className="menu-item" href='#'>
-            <i className="material-icons">list</i>
-            &nbsp;Digital Files
-          </a>
-        </li> */}
-        <li>
-          <a className="menu-item" href="#">
-            <i className="material-icons">arrow_forward_ios</i>
-            <span onClick={handlerecord}>Request</span>
+        
+        <li onClick={handlerecord}>
+          <a className="menu-item" href="#" style={{padding:"10px 131px 10px 0"}}>
+           
+           <BsFillChatSquareQuoteFill style={{fontSize:"17px" ,margin:"-2px 6px"}}/>Request<MdArrowDropDown style={{fontSize:"22px",marginBottom:"-6px"}}/>
           </a>
 
         </li>
         {recorddiv ?
           <ul className="innerul" id='reportinnerdiv'  >
-            <a href='/RecordPickup'><li>Record Pickup</li></a>
+            <a href='/RecordPickup'><li style={{borderTop:"1px solid #2f2f2f"}}>Record Pickup</li></a>
             <a href='/RecordRetrival'><li>Record Retrieval</li></a>
             <a href='/ScanningRequest'> <li>Scanning Request</li></a>
             <a href='/Shredding'> <li>Shredding</li></a>
@@ -105,16 +102,14 @@ const SideBar = ({ openClass }) => {
           : null}
 
 <li>
-          <a className="menu-item" href='#' >
-
-            <span onClick={handlerequestStatusReport}><i className="material-icons">arrow_forward_ios</i>
-              Request Status Report</span>
+          <a onClick={handlerequestStatusReport} className="menu-item"  href='#' style={{padding:"10px 25px 10px 0"}}>
+             <MdEditNote style={{fontSize:"28px",margin:"-3px 0 -5px"}}/>Request Status Report<MdArrowDropDown style={{fontSize:"22px",marginBottom:"-6px"}}/>
 
           </a>
         </li>
         {RequestStatusReport ?
           <ul className="innerul" id='reportinnerdiv' >
-            <a href="/RecordPickupReport"> <li>Pickup Report</li></a>
+            <a href="/RecordPickupReport"> <li style={{borderTop:"1px solid #2f2f2f"}}>Pickup Report</li></a>
             <a href="/RecorRetrivalReport"> <li>Retrieval Report</li></a>
             <a href="/ShreddingRequestReport"> <li>Shredding Report</li></a>
             <a href="/ScanningRequestReport"> <li>Scanning Report</li></a>
@@ -124,25 +119,43 @@ const SideBar = ({ openClass }) => {
           : null}
 
         <li>
-          <a className="menu-item" href='#' >
+          <a onClick={handlereport} className="menu-item" href='#' >
 
-            <span onClick={handlereport}><i className="material-icons">arrow_forward_ios</i>
-              Reports</span>
+            
+            <MdEditNote style={{fontSize:"28px",margin:"-3px 0 -5px"}}/> Reports <MdArrowDropDown style={{fontSize:"22px",marginBottom:"-6px"}}/>
 
           </a>
         </li>
         {reportdiv ?
           <ul className="innerul" id='reportinnerdiv' >
-            <a href="/InwardReports"> <li>Inward Report</li></a>
+            <a href="/InwardReports"> <li style={{borderTop:"1px solid #2f2f2f"}}>Inward Report</li></a>
             <a href="/RetrivalReports"> <li>Retrieval Report</li></a>
             <a href="/ScanningReports"> <li>Scanning Report</li></a>
             <a href="/StockReports"> <li>Stock Report</li></a>
           </ul>
           : null}
 
-          <li>
+         
+
+          
+        <li >
+          <a onClick={handlereprofile} className="menu-item" href='#' style={{padding:"10px 124px 10px 0"}}>
+           <RiUserFill style={{fontSize:"20px",margin:"-2px 5px"}}/> Account<MdArrowDropDown style={{fontSize:"22px",marginBottom:"-6px"}}/>
+          </a>
+        </li>
+        {profilrdiv ?
+          <ul className="innerprofileul" id='reportinnerdiv' >
+            <a href="/Profile"> <li style={{borderTop:"1px solid #2f2f2f"}}>Profile</li></a>
+            <a href="/Changepassword"> <li>Change Password</li></a>
+            <a href="#" onClick={handleClick}> <li>Logout</li></a>
+          
+          </ul>
+          : null}
+           <li>
           <div className="profilediv2 mr-5">
-          <select style={{ border: "none", background: "none", color:"red" }} onChange={handleChange}>
+          <ImLocation style={{fontSize:"20px",margin:"-2px 0px"}}/>
+          <select style={{ border: "none", background: "none", color:"white"}} onChange={handleChange}>
+          
             <option hidden>{localStorage.getItem('Wh_name')} </option>
 
             {show ?
@@ -157,23 +170,6 @@ const SideBar = ({ openClass }) => {
         </div>
 
           </li>
-
-          
-        <li>
-          <a className="menu-item" href='#' >
-
-            <span onClick={handlereprofile} className="profiletext"><i className="material-icons">person</i>
-              Account</span>
-          </a>
-        </li>
-        {profilrdiv ?
-          <ul className="innerprofileul" id='reportinnerdiv' >
-            <a href="/Profile"> <li>Profile</li></a>
-            <a href="/Changepassword"> <li>Change Password</li></a>
-            <a href="#" onClick={handleClick}> <li>Logout</li></a>
-          
-          </ul>
-          : null}
 
       </ul>
     </nav>

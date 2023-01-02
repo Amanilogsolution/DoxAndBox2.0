@@ -4,7 +4,11 @@ import { rmsRequest, ReportData, Totallocation, ShreddingDupliacte } from '../..
 import Select from 'react-select';
 import * as XLSX from "xlsx";
 import ExcelFormat from '../../ExcelFormat/DoxAndBoxShredding.xlsx'
-
+import './Shredding.css'
+import svg from '../../Images/phoneicon.png'
+import { MdClear } from 'react-icons/md';
+import { BsFillChatSquareQuoteFill } from 'react-icons/bs';
+import Footer from '../../Navbar/Footer'
 
 
 function Shredding() {
@@ -13,11 +17,11 @@ function Shredding() {
     const [selectfiles, setSelectFiles] = useState([]);
     const [totallocation, setTotallocation] = useState([])
     const [exceldata, setExcelData] = useState([])
-    const [duplicate,setDuplicate] = useState([]);
+    const [duplicate, setDuplicate] = useState([]);
 
     useEffect(() => {
         const data = async () => {
-            const result = await ReportData(localStorage.getItem('CUST_ID'),localStorage.getItem('Warehouse_ID'))
+            const result = await ReportData(localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'))
             console.log(result)
             setData(result)
             const Totallocationresult = await Totallocation();
@@ -26,7 +30,7 @@ function Shredding() {
         data()
     }, [])
 
-    let options= data.map((ele) => {
+    let options = data.map((ele) => {
         return { value: ele.Fileno, label: `${ele.Fileno}, ${ele.FileName}` };
     })
 
@@ -39,17 +43,17 @@ function Shredding() {
         const remark = document.getElementById('remark').value;
         const locationid = localStorage.getItem('Warehouse_ID')
         const fileid = locationid + Math.floor(Math.random() * 10000000)
-        const requestid = locationid +'-'+Math.floor(Math.random()*10000000)+'-'+'SR'
+        const requestid = locationid + '-' + Math.floor(Math.random() * 10000000) + '-' + 'SR'
 
 
-        console.log(onsite,locationid,fileid)
+        console.log(onsite, locationid, fileid)
 
         if (!onsite || !request_date) {
             setMandatoryfield(true)
         }
         else {
             if (noof_pages) {
-                const result = await rmsRequest('ShreddingRequest', '', '', request_date, '', '', '', '', noof_pages, onsite, '', remark, localStorage.getItem('User_ID'), fileid, locationid.requestid,localStorage.getItem('CUST_ID'));
+                const result = await rmsRequest('ShreddingRequest', '', '', request_date, '', '', '', '', noof_pages, onsite, '', remark, localStorage.getItem('User_ID'), fileid, locationid.requestid, localStorage.getItem('CUST_ID'));
                 // console.log(result)
 
             } else if (exceldata.length > 0) {
@@ -72,11 +76,11 @@ function Shredding() {
                     setDuplicate(duplicatearray)
                     document.getElementById('duplicatemodal').style.display = "block"
                 } else {
-                    result.forEach(async(el) =>{
+                    result.forEach(async (el) => {
                         const file_name = el.fileno
-                        const result = await rmsRequest('ShreddingRequest', '', '', request_date, '', file_name, '', '', '', onsite, '', remark, localStorage.getItem('User_ID'), fileid, locationid,requestid,localStorage.getItem('CUST_ID'));
+                        const result = await rmsRequest('ShreddingRequest', '', '', request_date, '', file_name, '', '', '', onsite, '', remark, localStorage.getItem('User_ID'), fileid, locationid, requestid, localStorage.getItem('CUST_ID'));
                     })
-                    window.location.href='/Dashboard'
+                    window.location.href = '/Dashboard'
                 }
 
 
@@ -86,10 +90,10 @@ function Shredding() {
                 selectfiles.forEach(async (datas) => {
                     const file_name = datas.value
 
-                    const result = await rmsRequest('ShreddingRequest', '', '', request_date, '', file_name, '', '', '', onsite, '', remark, localStorage.getItem('User_ID'), fileid, locationid,requestid,localStorage.getItem('CUST_ID'));
+                    const result = await rmsRequest('ShreddingRequest', '', '', request_date, '', file_name, '', '', '', onsite, '', remark, localStorage.getItem('User_ID'), fileid, locationid, requestid, localStorage.getItem('CUST_ID'));
 
                 })
-                window.location.href='/Dashboard'
+                window.location.href = '/Dashboard'
 
 
             }
@@ -168,125 +172,121 @@ function Shredding() {
         <>
             <div className="generatorlogcontainer">
                 <Navbar />
+                <div className='shredding'>
+                    <div className='form'>
+                        <form style={{ margin: "0px 20px 0px 15px" }}>
+                        <h3 className='pb-3'>Shredding request <BsFillChatSquareQuoteFill style={{margin:"0 0 -9px 0",fontSize:"30px"}}/> </h3>
+                            <div className="form-group " >
+                                <label>On Site Shredding <span style={{ color: "red" }}>*</span></label>
+                                <select className="form-control" id='onSite' onChange={handleChangesite} style={{ height: "32px" }}>
+                                    <option defaultValue hidden>Choose ...</option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group" id="onsideShredding" style={{ display: "none" }} >
+                                <label>No of Files <span style={{ color: "red" }}>*</span></label>
+                                <input type="number" className="form-control" id='noofpages' />
+                            </div>
 
 
-                 {/* Duplicate Array */}
-            <div className="col" id="duplicatemodal" style={{ margin: "80px auto", width: "630px",display:"none" }}>
-                <div className="card text-center" style={{ boxShadow: "2px 2px 5px #333" }}>
-                <h4 className="card-title mt-2 " >This Data Already Exist</h4>
-                <ol>
-                    {
-                        duplicate.map(element => (
-                            <li>{element.file_number}</li>
-                        ))
-                    }
-                   
-                </ol>
 
-                <div className="form-group">
-                                        <button type="button" onClick={(e)=>{e.preventDefault();window.location.reload()}} className="btn btn-secondary mr-4 float-right mb-4">Cancel</button>
-                                    </div>                  
-                                      </div>
+                            <div className="form-group" id="NotonsideShredding" >
+                                <div className="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" defaultChecked onClick={handlelessthan} />
+                                        less than 10
+                                    </label>
+                                    &nbsp;&nbsp;
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option2" onClick={handlemorethan} />
+                                        more than 10
+                                    </label>
+                                </div>
+
+                                <div className="form-group" id="Search&Select">
+                                    <label>Search *</label>
+                                    <Select
+                                        id="search"
+                                        options={options}
+                                        isMulti={true}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <div className="form-group" id="PagesToBeShred" style={{ display: "none" }}>
+                                    <label>Shredd *</label>
+                                    <br />
+                                    <button className="btn maroon_btn" onClick={(e) => e.preventDefault()} data-toggle="modal" data-target="#exampleModalCenter">Upload Document</button>
+                                    {/* <input type="number" className="form-control" id='noofpages' /> */}
+                                </div>
+                            </div>
+
+                            {/* <div className="form-group"> */}
+                            <div className="form-group " >
+                                <label>Date Of Shredding <span style={{ color: "red" }}>*</span></label>
+                                <input type="date" className="form-control" id='dateofShreading' />
+                            </div>
+
+                            {/* </div> */}
+
+                            <div className="form-group">
+                                <label>Remarks</label>
+                                <textarea className="form-control" placeholder="Comments" type="text" id='remark' />
+                            </div>
+                            {
+                                mandatoryfield ?
+                                    <p style={{ color: "red" }}>Please! fill the mandatory field.</p>
+                                    : null
+                            }
+                            <div className="form-group">
+                                <button type="submit" className="dark_btn btn float-right mb-4" onClick={handleClick}>Submit</button>
+                                <button type="submit" className="maroon_btn btn mr-4 float-right mb-4">Reset</button>
+                            </div>
+                        </form>
                     </div>
-                <div>
+                    <div className='svg_div'>
+                    <img src={svg}/>
+                    </div>
+                </div>
 
-                    <div className="col " style={{ margin: "80px auto", width: "630px" }}>
-                        <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
-                            <header className="card-header" style={{ background: "rgba(0,0,0,0.2)" }}>
-                                <h4 className="card-title mt-2" >Shredding Request</h4>
-                            </header>
-                            <article className="card-body" >
-                                <br />
-                                <form style={{ margin: "0px 20px 0px 15px" }}>
+                {/* Duplicate Array */}
+                <div className="col" id="duplicatemodal" style={{ display: "none",width:"400px",margin:"-580px 34% 0" }}>
+                    <div className="card text-center" style={{background:"rgba(34,34,34,0.9)"}}>
+                        <p className="card-title mt-4 text-white" >This Data Already Exist</p>
+                        <ol>
+                            {
+                                duplicate.map(element => (
+                                    <li>{element.file_number}</li>
+                                ))
+                            }
+                        </ol>
 
-                                    <div className="form-group " >
-                                        <label>On Site Shredding <span style={{ color: "red" }}>*</span></label>
-                                        <select className="form-control" id='onSite' onChange={handleChangesite} style={{ height: "32px" }}>
-                                            <option defaultValue hidden>Choose ...</option>
-                                            <option>Yes</option>
-                                            <option>No</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="form-group" id="onsideShredding" style={{ display: "none" }} >
-                                        <label>No of Files <span style={{ color: "red" }}>*</span></label>
-                                        <input type="number" className="form-control" id='noofpages' />
-                                    </div>
-
-
-
-                                    <div className="form-group" id="NotonsideShredding" >
-                                        <div className="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" defaultChecked onClick={handlelessthan} />
-                                                less than 10
-                                            </label>
-                                            &nbsp;&nbsp;
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option2" onClick={handlemorethan} />
-                                                more than 10
-                                            </label>
-                                        </div>
-
-                                        <div className="form-group" id="Search&Select">
-                                            <label>Search *</label>
-                                            <Select
-                                                id="search"
-                                                options={options}
-                                                isMulti={true}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-                                        <div className="form-group" id="PagesToBeShred" style={{ display: "none" }}>
-                                            <label>Shredd *</label>
-                                            <br />
-                                            <button className="btn btn-danger" onClick={(e) => e.preventDefault()} data-toggle="modal" data-target="#exampleModalCenter">Upload Document</button>
-                                            {/* <input type="number" className="form-control" id='noofpages' /> */}
-                                        </div>
-                                    </div>
-
-                                    {/* <div className="form-group"> */}
-                                    <div className="form-group " >
-                                        <label>Date Of Shredding <span style={{ color: "red" }}>*</span></label>
-                                        <input type="date" className="form-control" id='dateofShreading' />
-                                    </div>
-
-                                    {/* </div> */}
-
-                                    <div className="form-group">
-                                        <label>Remarks</label>
-                                        <textarea className="form-control" placeholder="Comments" type="text" id='remark' />
-                                    </div>
-                                    {
-                                        mandatoryfield ?
-                                            <p style={{ color: "red" }}>Please! fill the mandatory field.</p>
-                                            : null
-                                    }
-                                    <div className="form-group">
-                                        <button type="submit" className="btn btn-primary float-right mb-4" onClick={handleClick}>Submit</button>
-                                        <button type="submit" className="btn btn-secondary mr-4 float-right mb-4">Reset</button>
-                                    </div>
-                                </form>
-                            </article>
+                        <div className="form-group">
+                            <button type="button" onClick={(e) => { e.preventDefault(); window.location.reload() }} className="btn btn-danger mr-4 float-right mb-4">Cancel</button>
                         </div>
                     </div>
+                </div>
+                <div>
+
 
 
                 </div>
             </div>
 
             {/* // Modal Start // */}
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade mt-5" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class=" model_shredding modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Upload Document</h5>
+                            <p class="modal-title text-white" id="exampleModalLongTitle">Upload Document</p>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                                <MdClear style={{color:"white"}}/>
                             </button>
                         </div>
                         <div class="modal-body">
                             <input
+                            style={{border:"1px solid white",background:"none"}}
                                 id=""
                                 type="file"
                                 onChange={handleChangeExcel}
@@ -296,23 +296,24 @@ function Shredding() {
                             />
                             <br />
                             <span >
-                                <a style={{ color: "red" }}
+                                <a style={{ color: "white" }}
                                     href={ExcelFormat}
                                     download> Download format</a>
                             </span>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" onClick={handleClickUpload} class="btn btn-primary">Save changes</button>
+                            <button type="button" class="maroon_btn btn" data-dismiss="modal">Close</button>
+                            <button type="button" onClick={handleClickUpload} class="dark_btn btn ">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
             {/* Modal End */}
+            <Footer/>
 
-           
-                </>
-                )
+
+        </>
+    )
 }
 
-                export default Shredding
+export default Shredding
