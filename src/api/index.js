@@ -92,12 +92,3 @@ export const TotalScanReportCount = async (custid,wh,startdate,enddate) => {
     const url = `https://portalbackend.doxandbox.com/api/totalscanreportcount`
     return axios.post(url, {custid,wh,startdate,enddate}).then(response => response.data).catch(error => console.log(error));
 }
-
-
-
-
-
-
-
-
-
