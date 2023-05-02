@@ -4,11 +4,43 @@ import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { rmsReports } from '../../../api/index';
 import Navbar from '../../Navbar/Navbar';
-import '../response.css';
+import Footer from '../../Navbar/Footer'
+import './inwardReports.css'
 import { DatePicker } from "antd";
 import Moment from "moment";
 import "antd/dist/antd.css";
+import { MdEditNote } from 'react-icons/md';
 const { RangePicker } = DatePicker;
+
+
+const customStyles = {
+  title: {
+      style: {
+          fontColor: 'red',
+          fontWeight: '900',
+          
+      }
+  },
+  rows: {
+      style: {
+          minHeight: '35px',
+      }
+  },
+  headCells: {
+      style: {
+          fontSize: '14px',
+          background: '#900d10',
+          color: 'white',
+      },
+  },
+  cells: {
+      style: {
+          fontSize: '14px',
+          background: 'rgb(242,242,242)',
+          borderBottom: "1px solid silver",
+      },
+  },
+};
 
 
 const columns = [
@@ -116,19 +148,25 @@ function InwardReports() {
   }
 
   return (
-    <div className="InvoicesinProgress">
-      <Navbar />
+    
+    <>
+    <Navbar />
+    <div className="InvoicesinProgress_inward">
+      
+      <div className='reports_div_inward'>
       {loading?(
-                  <h1 style={{display:"flex",justifyContent:"center",alignItems:"center" }}>Loading...</h1>
+                 <div class="loader"></div>
 
       ):(
-      <div className=" reportdata"  >
-        <h4 className="text-dark">Inward Report</h4>
+      <div className=" reportdata_inward">
+        <h3>Inward Report <MdEditNote style={{fontSize:"40px",margin:"-10px 0"}}/></h3>
+        <div style={{display:"flex",justifyContent:"space-around"}}>
         {
-          toogle?<h3 style={{marginLeft:"40%"}}>Current Month</h3>:null
+          toogle?<h4 >Current Month</h4>:null
 
         }
-        <RangePicker style={{marginLeft:"80%"}} onChange={setfun} />
+        <RangePicker onChange={setfun} />
+        </div>
 
         <div className="DataTable">
           <DataTableExtensions {...tableData} >
@@ -136,12 +174,16 @@ function InwardReports() {
               columns={columns}
               data={data}
               pagination
+              customStyles={customStyles}
             />
           </DataTableExtensions>
         </div>
       </div>
       )}
+      </div>
     </div>
+    <Footer/>
+    </>
   )
 }
 

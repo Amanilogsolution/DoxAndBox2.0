@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
-import { ProfileDetails,GenerateTwofa,Verify2fa } from "../../api";
+import { ProfileDetails, GenerateTwofa, Verify2fa } from "../../api";
+import './profile.css'
+import { HiUser } from 'react-icons/hi';
+import Footer from '../Navbar/Footer'
 
 const Profile = () => {
     const [profile, setProfile] = useState({});
@@ -33,7 +36,7 @@ const Profile = () => {
     const handleverify = async (e) => {
         e.preventDefault()
         const inputtoken = document.getElementById('tokeninp').value;
-        const vetfytokendata = await Verify2fa(tfadata.secret, inputtoken,localStorage.getItem('CUST_ID'))
+        const vetfytokendata = await Verify2fa(tfadata.secret, inputtoken, localStorage.getItem('CUST_ID'))
         if (vetfytokendata === 'Verify') {
             setVerify(true)
         }
@@ -47,109 +50,89 @@ const Profile = () => {
 
     return (
         <>
-            <div className="Profilediv">
+            <div className="TotalProfilediv">
                 <Navbar />
-                <div className="pb-2">
-
-                    <div className="col " style={{ margin: "20px auto", width: "600px" }}>
-                        <div style={{ display: "flex", flexDirection: "row-reverse", paddingRight: "15px" }}>
-                            <h5>Member Since:- {profile.custdoe}</h5>
+                <div className="profile_div">
+                    <div className="profile_div_inside">
+                        <div className="prof_icon_div">
+                            <HiUser className="prof_icon" style={{}} />
+                            <h4>{profile.custname}</h4>
+                            <h5>Member Since :- {profile.custdoe ? profile.custdoe:'NA'}</h5>
                         </div>
-                        <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
-                            <header className="card-header" style={{ background: "rgba(0,0,0,0.2)" }}>
-                                <h4 className="card-title mt-2" >Contact Information</h4>
-                            </header>
-                            <article className="card-body" >
-                                <form autoComplete="off">
-                                    {/* <h3 className="card-title mt-2">Contact Information</h3> */}
-                                    <br />
-                                    <div className="form-group">
-                                        <label>Name *</label>
-                                        <input type="Text" className="form-control" value={profile.custname} disabled readOnly id='name' />
-                                    </div>
-                                    <div className="form-row">
-                                        <div className="form-group col-md-6">
-                                            <label>Email </label>
-                                            <input type="email" className="form-control" value={profile.custemail} id="email" disabled readOnly />
-                                        </div>
-                                        <div className="form-group col-md-6">
-                                            <label>Mobile </label>
-                                            <input type="number" className="form-control" value={profile.custcontactno} id="mobile" disabled readOnly />
-                                        </div>
-                                    </div>
-                                    <h4 className="card-title mt-2">Address</h4><br />
-                                    <div className="form-group">
-                                        <label>Address 1 </label>
-                                        <input type="Text" className="form-control" value={profile.custadd} id='address1' disabled readOnly />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Address 2</label>
-                                        <input type="Text" className="form-control" value={profile.custadd1} id='address2' disabled readOnly />
-                                    </div>
+                        <div className="prof_content">
+                            <h4>Contact Information</h4>
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                    <label>Email </label>
+                                    <p>{profile.custemail}</p>
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label>Mobile </label>
+                                    <p>{profile.custcontactno ? profile.custcontactno : 'NA'}</p>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label>Address 1 </label>
+                                <p>{profile.custadd}</p>
+                            </div>
+                            <div className="form-group">
+                                <label>Address 2</label>
+                                <p>{profile.custadd1 ? profile.custadd1 : 'NA'}</p>
+                            </div>
 
-                                    <div className="form-row">
-                                        <div className="form-group col-md-6">
-                                            <label>Country</label>
-                                            <input type="text" className="form-control" value={profile.custcountry} id='country' disabled readOnly />
-                                        </div>
-                                        <div className="form-group col-md-6">
-                                            <label>State</label>
-                                            <input type="text" className="form-control" value={profile.custstate} id='city' disabled readOnly />
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                    <label>Country</label>
+                                    <p>{profile.custcountry}</p>
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label>State</label>
+                                    <p>{profile.custstate}</p>
 
-                                        </div>
-                                    </div>
-                                    <div className="form-row">
-                                        <div className="form-group col-md-6">
-                                            <label>City</label>
-                                            <input type="text" className="form-control" value={profile.custcity} id='state' disabled readOnly />
-                                        </div>
-                                        <div className="form-group col-md-6">
-                                            <label>Pincode </label>
-                                            <input type="number" className="form-control" value={profile.custpin} id='pincode' disabled readOnly />
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                    <label>City</label>
+                                    <p>{profile.custcity}</p>
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label>Pincode </label>
+                                    <p>{profile.custpin}</p>
 
-                                        </div>
-                                    </div>
-
-                                    <div className="form-row">
-                                                    <label htmlFor="designation" className="col-md-4 col-form-label ">2 Factor Authentication </label>
-                                                    <div className="col form-group">
-                                                        <input type="checkbox" className="form-control col-md-1 " id='ckeckboxtfa' onChange={handletfatoggle} style={{ height: "20px", width: "20px", marginTop: "5px" }} />
-                                                    </div>
-
-                                                </div>
-
-                                                <div className="form-row" id="tfadiv" style={{ display: "none" }}>
-                                                    <div className="col-md-2 form-group" >
-                                                    </div>
-                                                    <div className="col-md form-group" >
-                                                        <img src={tfadata.qr} alt='' /><br/>
-                                                        <div className="col form-group mt-2"  >
-                                                            <input type='number' id='tokeninp' className="form-control col-md-7"
-                                                                placeholder='Enter Token' />
-                                                            <button className='btn btn-success' 
-                                                            onClick={handleverify}
-                                                            >Verify</button>
-                                                            {verify === true ?
-                                                                <h5 style={{ color: "green" }}>Verify</h5>
-                                                                : verify === false ? <h5 style={{ color: "red" }}>Wrong Token</h5>
-                                                                    : <p></p>}
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-
-
-                                    {/* <div className="form-group" >
-                                        <button type="submit" className="btn btn-primary  float-right">Update</button>
-                                        <button type="submit" className="btn btn-secondary mr-4 float-right">Reset</button>
-                                    </div> */}
-                                </form>
-                            </article>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div className="form-row mt-4">
+                        <label htmlFor="designation" className="col-md-4 col-form-label">2 Factor Authentication </label>
+                        <div className="col form-group">
+                            <input type="checkbox" className="form-control col-md-1 " id='ckeckboxtfa' onChange={handletfatoggle} style={{ height: "20px", width: "20px", marginTop: "5px" }} />
+                        </div>
+
+                    </div>
+
+                    <div className="form-row" id="tfadiv" style={{ display: "none"}}>
+                        <div className="col-md form-group" >
+                            <img src={tfadata.qr} alt='' /><br />
+                            <div className="col form-group" style={{width:"50%",margin:"10px 0" }} >
+                                <input type='number' id='tokeninp' className="form-control col-md-7"
+                                    placeholder='Enter Token' style={{background:'rgb(255, 254, 254)',border: 'none',boxShadow: '1px 1px 10px 1px rgb(141, 140, 140)'}}/>
+                                <button className='btn maroon_btn mx-3'
+                                    onClick={handleverify}
+                                >Verify</button>
+                                {verify === true ?
+                                    <h5 style={{ color: "green" }}>Verify</h5>
+                                    : verify === false ? <h5 style={{ color: "red" }}>Wrong Token</h5>
+                                        : <p></p>}
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+                
             </div>
+            <Footer/>
         </>
     )
 }

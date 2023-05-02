@@ -3,6 +3,9 @@ import Navbar from '../../Navbar/Navbar'
 import './RecordRetrival.css';
 import { rmsRequest, ReportData, ReportdataBoxes } from '../../../api/index'
 import Select from 'react-select';
+import svg from '../../Images/phoneicon.png'
+import { BsFillChatSquareQuoteFill } from 'react-icons/bs';
+import Footer from '../../Navbar/Footer'
 
 
 function RecordRetrival() {
@@ -106,7 +109,6 @@ function RecordRetrival() {
 
     }
 
-
     // const handleChangeWarehouse = async(e) => {
     //     console.log(e.target.value,localStorage.getItem('CUST_ID'))
     //     const result = await ReportData(localStorage.getItem('CUST_ID'),e.target.value)
@@ -126,121 +128,110 @@ function RecordRetrival() {
         console.log(newvalue.length)
         if (newvalue.length == 1) {
             setTotalValues(newvalue)
-
-
         } else {
             newvalue.pop()
-
             setTotalValues(newvalue)
         }
     }
-
 
 
     return (
         <>
             <div className="generatorlogcontainer">
                 <Navbar />
-                <div>
+                <div className='rec_retrival'>
+                    <form style={{ margin: "0px 20px 0px 15px" }}>
+                     <h3 className='my-4'>Record Retrival <BsFillChatSquareQuoteFill style={{margin:"0 0 -9px 0",fontSize:"30px"}}/></h3>
+                        <br />
 
-                    <div className="col " style={{ margin: "80px auto", width: "80%" }}>
-                        <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
-                            <header className="card-header" style={{ background: "rgba(0,0,0,0.2)" }}>
-                                <h4 className="card-title mt-2" >Record Retrival</h4>
-                            </header>
-                            <article className="card-body" >
-                                <form style={{ margin: "0px 20px 0px 15px" }}>
-                                    {/* <h3 className="card-title mt-4">Record Retrival</h3> */}
-                                    <br />
-
-                                    <div className="form-row">
-                                        <label className="col-md-1"> Type <span style={{ color: "red" }}>*</span></label>
-                                        <select className="form-control col-md-3" id='type' onChange={handleChangeType} style={{ height: "32px" }}>
-                                            <option defaultValue hidden>Choose ...</option>
-                                            <option>File</option>
-                                            <option >Box</option>
-                                        </select>
-                                    </div>
-                                    <table class="table col-md-5">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">File/Box</th>
-                                                <th scope="col">remark</th>
-                                                <th scope="col">Type Of Retrival</th>
-                                                <th scope="col">Type Of Delivery</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                totalValues.map((element, index) => (
-                                                    <tr key={index}>
-                                                        <td className="col-md-4">
-                                                            {
-                                                                toogle ? <div id="fileshidden">
-                                                                    <Select options={options} className="col" isMulti={false} onChange={handleChange} />
-                                                                </div> : <div id="Boxeshidden" >
-                                                                    <Select options={optionBox} className="col" isMulti={false} onChange={handleChangeBox} />
-                                                                </div>
-                                                            }
-                                                            {/* 
-                                                        <div id="fileshidden">
-                                                    <Select options={options} className="col" isMulti={false} onChange={handleChange} />
-                                                    </div>
-                                                    <div id="Boxeshidden" >
-                                                    <Select options={optionBox} className="col"  isMulti={false} onChange={handleChange} />
-                                                    </div> */}
-
-                                                        </td>
-                                                        <td>
-                                                            <input style={{ border: "none" }} className="form-control " type="text" id="remark" placeholder="remark" onBlur={handleChangeremark} />
-                                                        </td>
-                                                        <td className="col-md-2">
-                                                            <select id='typeOfRetrival' style={{ border: "none" }} onChange={handleChangeRetrival}>
-                                                                <option defaultValue hidden>Choose ...</option>
-                                                                <option>Digital (Scan)</option>
-                                                                <option >Physical-Returnable</option>
-                                                                <option >Physical-Permanent Out</option>
-                                                                <option >Shredding</option>
-                                                                {/* <option >Audit on Site</option> */}
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select id="deliverytype" style={{ border: "none" }} onChange={handleChangeDelivery}>
-                                                                <option defaultValue hidden>Choose ...</option>
-                                                                <option>Standard</option>
-                                                                <option>Urgent</option>
-                                                                <option>Express Delivery</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                ))
-                                            }
-
-                                        </tbody>
-
-                                    </table>
-
-
-                                    <button className="btn btn-primary" onClick={handleAdd}>Add</button>   &nbsp;
-                                    <button className="btn btn-danger" onClick={handleRemove}>Remove</button>
-
-                                    <hr />
-                                    {
-                                        mandatoryfield ?
-                                            <p style={{ color: "red" }}>Please! fill the mandatory field.</p>
-                                            : null
-                                    }
-                                    <div className="form-group">
-                                        <button type="submit" className="btn btn-primary  float-right mb-4" onClick={handleClick}>Submit</button>
-
-                                        <button type="submit" className="btn btn-secondary mr-4 float-right mb-4">Reset</button>
-                                    </div>
-                                </form>
-                            </article>
+                        <div className="form-row">
+                            <label className="col-md-1"> Type <span style={{ color: "red" }}>*</span></label>
+                            <select className="form-control col-md-3" id='type' onChange={handleChangeType} style={{ height: "32px" }}>
+                                <option defaultValue hidden>Choose ...</option>
+                                <option>File</option>
+                                <option >Box</option>
+                            </select>
                         </div>
+                        <table class="table col-md-5">
+                            <thead>
+                                <tr>
+                                    <th scope="col">File/Box</th>
+                                    <th scope="col">remark</th>
+                                    <th scope="col">Type Of Retrival</th>
+                                    <th scope="col">Type Of Delivery</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                {
+                                    totalValues.map((element, index) => (
+                                        <tr key={index}>
+                                            <td className="col-md-4" >
+                                                {
+                                                    toogle ? <div id="fileshidden" >
+                                                        <Select options={options} className="col" isMulti={false} onChange={handleChange} />
+                                                    </div> : <div id="Boxeshidden" >
+                                                        <Select options={optionBox} className="col" isMulti={false} onChange={handleChangeBox} />
+                                                    </div>
+                                                }
+
+                                            </td>
+                                            <td>
+                                                <input style={{ border: "none",boxShadow: "1px 1px 10px 1px rgb(141, 140, 140)"}} className="form-control " type="text" id="remark" placeholder="remark" onBlur={handleChangeremark} />
+                                            </td>
+                                            <td className="col-md-2">
+                                                <select id='typeOfRetrival' style={{borderRadius:"4px",height:"33px"}}onChange={handleChangeRetrival}>
+                                                    <option defaultValue hidden>Choose ...</option>
+                                                    <option>Digital (Scan)</option>
+                                                    <option >Physical-Returnable</option>
+                                                    <option >Physical-Permanent Out</option>
+                                                    <option >Photocopy</option>
+                                                    <option >Audit on Site</option>
+
+
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select id="deliverytype" style={{borderRadius:"4px",height:"33px"}} onChange={handleChangeDelivery}>
+                                                    <option defaultValue hidden>Choose ...</option>
+                                                    <option>Standard</option>
+                                                    <option>Urgent</option>
+                                                    <option>Express Delivery</option>
+                                                </select>
+
+                                            </td>
+
+                                        </tr>
+                                    ))
+                                }
+
+                            </tbody>
+
+                        </table>
+
+
+                        <button className="btn dark_btn" onClick={handleAdd}>Add</button>   &nbsp;
+                        <button className="btn btn-danger" onClick={handleRemove}>Remove</button>
+
+                        <hr />
+                        {
+                            mandatoryfield ?
+                                <p style={{ color: "red" }}>Please! fill the mandatory field.</p>
+                                : null
+                        }
+                        <div className="form-group">
+                            <button type="submit" className="dark_btn btn  float-right mb-4" onClick={handleClick}>Submit</button>
+
+                            <button type="submit" className="maroon_btn btn mr-4 float-right mb-4">Reset</button>
+                        </div>
+                    </form>
+                    <div className='svg_div'>
+                        <img src={svg} />
                     </div>
                 </div>
+
             </div>
+            <Footer/>
         </>
     )
 }

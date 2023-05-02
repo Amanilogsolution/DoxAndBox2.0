@@ -4,11 +4,43 @@ import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { rmsReports,TotalScanReportCount } from '../../../api/index';
 import Navbar from '../../Navbar/Navbar';
-import '../response.css';
+import Footer from '../../Navbar/Footer'
 import { DatePicker } from "antd";
 import Moment from "moment";
 import "antd/dist/antd.css";
+import './ScanningRep.css'
+import { MdEditNote } from 'react-icons/md';
+
 const { RangePicker } = DatePicker;
+
+const customStyles = {
+  title: {
+      style: {
+          fontColor: 'red',
+          fontWeight: '900',
+          
+      }
+  },
+  rows: {
+      style: {
+          minHeight: '35px',
+      }
+  },
+  headCells: {
+      style: {
+          fontSize: '14px',
+          background: '#900d10',
+          color: 'white',
+      },
+  },
+  cells: {
+      style: {
+          fontSize: '14px',
+          background: 'rgb(242,242,242)',
+          borderBottom: "1px solid silver",
+      },
+  },
+};
 
 const columns = [
   {
@@ -126,32 +158,56 @@ function ScanningReports() {
   }
 
   return (
-    <div className="InvoicesinProgress">
-      <Navbar />
+    <>
+    <Navbar />
+    <div className="InvoicesinProgress_scanning">
+      
+      <div className='reports_div_scanning'>
       {loading ? (
-        <h1 style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>Loading...</h1>
+        <div class="loader"></div>
 
       ) : (
         <div className=" reportdata" >
-          <h4 className="text-dark mn-3">Scanning Report</h4>
-          <div style={{display: "flex",justifyContent:"center",alignItems:"center"}}>
+          <h3 style={{marginBottom:"20px"}}>Scanning Report <MdEditNote style={{fontSize:"40px",margin:"-10px 0"}}/></h3>
+          <div className="reportDataInside">
           {
             toogle ?
-            <div>
-            <h3 > Total pages scanned - Current Month <span style={{color:"red",fontSize:"40px"}}>{pagescan}</span></h3> 
-            <h3> Total Files - Current Month <span style={{color:"red",fontSize:"40px"}}>{Totalfile}</span></h3> 
+            <>
+            <div className='d-flex'>
+            <h4 > Pages scanned - Current Month </h4>
+             <h3 style={{margin:"-3px 10px",color:"#901918"}}>
+              {pagescan} 
+              </h3>
             </div>
+            <div className='d-flex'>
+            <h4> Files - Current Month </h4> 
+            <h2 style={{margin:"-3px 10px",color:"#901918"}}>
+              {Totalfile}
+              </h2>
+            </div>
+            </>
 
             : 
-            <div>
-            <h3>Total pages scanned <span style={{color:"red",fontSize:"40px"}}>{pagescan}</span></h3>
-            <h3 >Total Files scanned <span style={{color:"red",fontSize:"40px"}}>{Totalfile}</span></h3>
+            <>
+            <div className='d-flex'>
+            <h4>Pages scanned </h4>
+            <h3 style={{margin:"-3px 10px",color:"#901918"}}>
+              {pagescan}
+              </h3>
             </div>
+            <div className='d-flex'>
+            <h4 >Files scanned</h4>
+            <h3 style={{margin:"-3px 10px",color:"#901918"}}>
+              {Totalfile}
+              </h3>
+              </div>
+            </>
 
             
           }
+           <RangePicker onChange={setfun} />
           </div>
-          <RangePicker style={{ marginLeft: "80%" }} onChange={setfun} />
+         
 
           <div className="DataTable">
             <DataTableExtensions {...tableData} >
@@ -159,12 +215,16 @@ function ScanningReports() {
                 columns={columns}
                 data={data}
                 pagination
+                customStyles={customStyles}
               />
             </DataTableExtensions>
           </div>
         </div>
       )}
+      </div>
     </div>
+    <Footer/>
+    </>
   )
 }
 

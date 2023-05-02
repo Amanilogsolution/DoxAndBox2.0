@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
-import './Login1.css'
+import './Login.css'
 import Image from '../../assets/icons/icon-512x5122.png'
 import { UserLogin } from '../../api/index'
+import loginimg from '../Images/loginimg.svg'
+import logo from '../Images/logo.png'
+import { RiUserFill, RiLockFill } from 'react-icons/ri';
+import { BsEyeFill,BsFillEyeSlashFill } from 'react-icons/bs';
+import Footer from '../Navbar/Footer'
 
 
 function Login() {
@@ -39,105 +44,59 @@ function Login() {
 				setMandatorydata(false)
 			}
 		}
-
 	}
 	return (
 		<>
-			{/* <div className="logincontainer" >
-				<div className="container" >
-					<div className="navcontainer">
-						<div id="loginbox" className="mainbox " >
-							<div className="row">
-								<div className="iconmelon" >
-									<img src={Image} alt="logo" />
-								</div>
-							</div>
-							<div className="panel-heading">
-								<div className="panel-title text-center text-white " style={{ fontSize: "20px", fontWeight: "600" }} >Login</div>
-							</div>
-							<div className="panel panel-default">
-								<div className="panel-body">
-									<form name="form" id="form" className="form-horizontal" >
-										<div className="input-group">
-											<span className="input-group-addon"><i className="glyphicon glyphicon-user" /></span>
-
-											<input id="user" type="email" className="form-control" name="user" placeholder="User" required />
-										</div>
-										<div className="input-group">
-
-											<span className="input-group-addon" onClick={handleClickChangeicon}>
-												{showpassword ? <i className="glyphicon glyphicon-eye-close"></i>
-													: <i className="glyphicon glyphicon-eye-open"></i>}</span>
-
-											<input id="password" type={showpassword ? 'password' : 'text'} className="form-control" name="password" placeholder="Password" required />
-
-										</div>
-										{mandatorydata ? <p style={{ color: "red" }}>Please! Fill the mandatory field...</p> : null}
-										{showerror ? <p style={{ color: "red" }}>Invalid UserId & Password</p> : null}
-										<div className="form-group">
-											<button type="submit" onClick={handleClick} className="btn btn-primary"> Log in</button>
-										</div>
-									</form>
-								</div>
-							</div>
-
-						
-						</div>
-					</div>
-					<div>
-				</div>
-			</div>
-		</div> */}
 			<div className="logincontainer" >
-				<div className="parentbox">
-					<div className='content'>
-						<div className="contentdata">
-							<h1>D O X - a n a l y t i c s</h1>
-
-
-						</div>
-
+				<div className='login_div'>
+					<div className='login_img_div'>
+						<img src={loginimg} />
+						<p style={{ marginTop: "40px", color: "white", fontSize: "25px" }}>Sign In to Explore Dox & Box</p>
+						<hr style={{background:"white",marginTop:"-16px"}}/>
 					</div>
-
-					<div className="loginbox">
-						<div className="iconmelon" >
-							<img src={Image} alt="logo" />
-						</div>
-						<div className="panel-heading">
-							<div className="panel-title text-center text-black " style={{ fontSize: "20px", fontWeight: "600" }} >Login
-							<span style={{marginLeft:"5px"}}><i className="glyphicon glyphicon-user" /></span></div>
-						</div>
-						<form name="form" id="form" className="loginform" >
-							<div className="input-group">
-								<span className="input-group-addon"><i className="glyphicon glyphicon-user" /></span>
-
-								<input id="user" type="email" className="form-control" name="user" placeholder="User" required />
+					<div className='login_content_div'>
+						
+						<div className='login_box'>
+							<div className="logo">
+								<img src={logo} style={{ margin: "15px 45px " }} />
+								<h1 style={{ color: "rgb(47, 47, 47)" }}>DOX - Analytics</h1>
 							</div>
-							<div className="input-group">
-
-								<span className="input-group-addon" onClick={handleClickChangeicon}>
-									{showpassword ? <i className="glyphicon glyphicon-eye-close"></i>
-										: <i className="glyphicon glyphicon-eye-open"></i>}</span>
-
-								<input id="password" type={showpassword ? 'password' : 'text'} className="form-control" name="password" placeholder="Password" required />
-
+							<div>
+								<label>Username</label><br />
+								<div className='inputs'>
+									<RiUserFill style={{ fontSize: "30px" }} required />
+									<input id="user" type="email" name="user" autocomplete="off"/>
+								</div>
+							</div>
+							<div style={{ marginTop: "10px" }}>
+								<label>Password</label><br />
+								<div className='inputs'>
+									<RiLockFill style={{ fontSize: "30px" }} required />
+									<input type={showpassword ? 'password' : 'text'} id="password" name="password" />
+								</div>
+							</div>
+							<div onClick={handleClickChangeicon} style={{ display: "flex", cursor: "pointer", marginTop: "10px" }}>
+								<p >Show Password</p>
+								{showpassword ? <BsFillEyeSlashFill style={{ margin: "2px", fontSize: "20px", color: "rgb(47, 47, 47)" }} />
+								:<BsEyeFill style={{ margin: "2px", fontSize: "20px", color: "rgb(47, 47, 47)" }} />}
+								
 							</div>
 							{mandatorydata ? <p style={{ color: "red" }}>Please! Fill the mandatory field...</p> : null}
 							{showerror ? <p style={{ color: "red" }}>Invalid UserId & Password</p> : null}
-							<button type="submit" onClick={handleClick} className="btn btn-danger"> Log in</button>
-						</form>
-
+							<button type="submit" onClick={handleClick}>LOGIN</button>
+						</div>
 					</div>
 				</div>
-				<div className="loginfooter">
-					<p>Copyright @ 2022-2023 Dox&Box.All right.reserved</p>
-
-				</div>
-
+				
 			</div>
+			<Footer/>
 		</>
 
 	)
 }
 
 export default Login
+
+
+//snm001
+//alpha01

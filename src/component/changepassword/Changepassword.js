@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar'
 import './changepass.css'
+import svg from '../Images/phoneicon.png'
 import { PasswordChange } from '../../api/index'
+import { HiLockClosed } from 'react-icons/hi';
+import Footer from '../Navbar/Footer'
+
 
 function Changepassword() {
     const [mandatoryfield, setMandatoryfield] = useState(false);
@@ -52,15 +56,10 @@ function Changepassword() {
         <>
             <div className="changepasscontainer">
                 <Navbar />
-                <div>
-                    <div className="col " style={{ margin: "70px auto", width: "620px" }}>
-                        <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
-                            <header className="card-header" style={{ background: "rgba(0,0,0,0.2)" }}>
-                                <h4 className="card-title mt-2" >Generator Log Book Entry</h4>
-                            </header>
-                            <article className="card-body">
-                                <form className='col'>
-                                    <br />
+                <div className='change_password'>
+                <form>
+                <h3 className='pb-3'>Change Your Password <HiLockClosed style={{margin:"0 0 -9px 0",fontSize:"30px"}}/></h3>
+                                    <br/>
 
                                     <label>User Id <span style={{ color: "red" }}>*</span></label>
 
@@ -107,15 +106,17 @@ function Changepassword() {
 
 
                                     <div className="form-group" >
-                                        <button type="submit" className="btn btn-primary float-right mb-5 mt-3" onClick={handleClick} id="subnitbtn">Change Password</button>
-                                        <button className="btn btn-secondary mr-4 float-right mb-5 mt-3" onClick={() => { window.location.href = '/Dashboard' }}>Cancel</button>
+                                        <button type="submit" className="btn dark_btn float-right mb-5 mt-3" onClick={handleClick} id="subnitbtn">Change Password</button>
+                                        <button className="btn maroon_btn mr-4 float-right mb-5 mt-3" onClick={() => { window.location.href = '/Dashboard' }}>Cancel</button>
                                     </div>
                                 </form>
-                            </article>
-                        </div>
+                                <div className='svg_div'>
+                      <img src={svg}/>
                     </div>
                 </div>
+
             </div>
+            <Footer/>
         </>
     )
 }

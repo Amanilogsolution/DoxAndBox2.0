@@ -20,9 +20,11 @@ export const rmsReports = async (reportType,custId,Whid,startDate,endDate) => {
     return axios.post(url, {reportType,custId,Whid,startDate,endDate}).then(response => response.data).catch(error => console.log(error));
 }
 
-export const rmsRequest = async (request_type,location,noof_files,request_date,request_time,file_name,retrival_type,delivery_type,noof_pages,onsite,activity,remark,entry_by,FILEID,WHID,requestid,custid,TYPE,Contactperson,Personno,Deparment,Boxno,DESCN) => {
-    const url = `https://portalbackend.doxandbox.com/api/request`
-    return axios.post(url, {request_type,location,noof_files,request_date,request_time,file_name,retrival_type,delivery_type,noof_pages,onsite,activity,remark,entry_by,FILEID,WHID,requestid,custid,TYPE,Contactperson,Personno,Deparment,Boxno,DESCN}).then(response => response.data).catch(error => console.log(error));
+export const rmsRequest = async (request_type,location,noof_files,request_date,request_time,file_name,retrival_type,delivery_type,noof_pages,onsite,activity,remark,entry_by,FILEID,WHID,requestid,custid,TYPE,Contactperson,Personno,Deparment,Boxno,DESCN,Bookingid) => {
+    console.log(request_type,location,noof_files,request_date,request_time,file_name,retrival_type,delivery_type,noof_pages,onsite,activity,remark,entry_by,FILEID,WHID,requestid,custid,TYPE,Contactperson,Personno,Deparment,Boxno,DESCN,Bookingid)
+
+    const url = `http://localhost:8008/api/request`
+    return axios.post(url, {request_type,location,noof_files,request_date,request_time,file_name,retrival_type,delivery_type,noof_pages,onsite,activity,remark,entry_by,FILEID,WHID,requestid,custid,TYPE,Contactperson,Personno,Deparment,Boxno,DESCN,Bookingid}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ReportData = async (uid_id,location_id) => {
@@ -92,3 +94,14 @@ export const TotalScanReportCount = async (custid,wh,startdate,enddate) => {
     const url = `https://portalbackend.doxandbox.com/api/totalscanreportcount`
     return axios.post(url, {custid,wh,startdate,enddate}).then(response => response.data).catch(error => console.log(error));
 }
+
+export const IdCount = async (whid) => {
+    const url = `http://localhost:8008/api/idcount`
+    return axios.post(url, {whid}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const dashbaorScannedPages = async (custid,whid) =>{
+    const url = `http://localhost:8008/api/dashbaorscannedpages`
+    return axios.post(url,{custid,whid}).then(response => response.data).catch(error => console.log(error));
+}
+
