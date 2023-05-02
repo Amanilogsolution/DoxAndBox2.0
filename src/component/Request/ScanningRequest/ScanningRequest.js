@@ -69,11 +69,10 @@ function ScanningRequest() {
                 <div className='svg_div'>
                       <img src={svg}/>
                     </div>
-                <form style={{ margin: "0px 20px 0px 15px" }}>
+                <form style={{ margin: "0px 20px 0px 15px",boxShadow:"8px 8px 5px 1px grey",padding:"40px 15px 0px",height:"75vh",borderRadius:"7px",background:"white" }}>
                 <h3>Request for Scaning <BsFillChatSquareQuoteFill style={{margin:"0 0 -9px 0",fontSize:"30px"}}/></h3>
                             <br />
                             
-
                             <div className="form-group">
                                 <label>Total no of Pages to be Scanned <span style={{ color: "red" }}>*</span></label>
                                 <input type="number" className="form-control" id='scanned_pages' />

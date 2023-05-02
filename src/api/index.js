@@ -96,12 +96,12 @@ export const TotalScanReportCount = async (custid,wh,startdate,enddate) => {
 }
 
 export const IdCount = async (whid) => {
-    const url = `http://localhost:8008/api/idcount`
+    const url = `https://portalbackend.doxandbox.com/api/idcount`
     return axios.post(url, {whid}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const dashbaorScannedPages = async (custid,whid) =>{
-    const url = `http://localhost:8008/api/dashbaorscannedpages`
+    const url = `https://portalbackend.doxandbox.com/api/dashbaorscannedpages`
     return axios.post(url,{custid,whid}).then(response => response.data).catch(error => console.log(error));
 }
 

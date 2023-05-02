@@ -17,18 +17,18 @@
 }
 .scan_req input{
    background:rgb(255, 254, 254);
-   border: none;
-   box-shadow: 1px 1px 10px 1px rgb(141, 140, 140);
+   /* border: none; */
+   /* box-shadow: 1px 1px 10px 1px rgb(141, 140, 140); */
  }
  .scan_req select{
     background:rgb(255, 254, 254);
-    border: none;
-    box-shadow: 1px 1px 10px 1px rgb(141, 140, 140);
+    /* border: none; */
+    /* box-shadow: 1px 1px 10px 1px rgb(141, 140, 140); */
   }
  .scan_req textarea{
   background:rgb(255, 254, 254);
-  border: none;
-  box-shadow: 1px 1px 10px 1px rgb(141, 140, 140);
+  /* border: none; */
+  /* box-shadow: 1px 1px 10px 1px rgb(141, 140, 140); */
 
   }
  .scan_req label{

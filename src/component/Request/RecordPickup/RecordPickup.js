@@ -70,14 +70,14 @@ function RecordPickup() {
 
     return (
         <>
-            <div className="RPgeneratorlogcontainer">
+            <div className="PickupReq">
                 <Navbar />
 
                 <div className='rec_pickup'>
-                    <div className='svg_div'>
-                        <img src={svg} />
+                    <div className='svg_div' >
+                        <img src={svg}  />
                     </div>
-                    <form style={{ margin: "0px 15px 0px 15px" }}>
+                    <form style={{ margin: "0px 20px 20px 15px",boxShadow:"8px 8px 5px 1px grey",padding:"30px 15px 0px",minHeight:"70vh",borderRadius:"7px",background:"white" }}>
                         <h3 className='pb-3'>Request for record pickup <BsFillChatSquareQuoteFill style={{ margin: "0 0 -9px 0", fontSize: "30px" }} /></h3>
 
                         <div className="form-group">

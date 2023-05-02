@@ -1,4 +1,4 @@
-.RPgeneratorlogcontainer{
+.PickupReq{
     background: url('../../Images/bg2.png');
     background-size: 100% 100%;
     min-height: 100vh;
@@ -7,17 +7,17 @@
    padding: 6% 0px 0 30px;
    display: flex;
    justify-content: space-around;
-   margin-bottom: 26px;
+   /* margin-bottom: 2px; */
 }
 .rec_pickup input{
    background:rgb(255, 254, 254);
-   border: none;
-   box-shadow: 1px 1px 10px 1px rgb(141, 140, 140);
+   /* border: none;
+   box-shadow: 1px 1px 10px 1px rgb(141, 140, 140); */
  }
  .rec_pickup textarea{
   background:rgb(255, 254, 254);
-  border: none;
-  box-shadow: 1px 1px 10px 1px rgb(141, 140, 140);
+  /* border: none;
+  box-shadow: 1px 1px 10px 1px rgb(141, 140, 140); */
 
   }
  .rec_pickup label{
@@ -32,7 +32,7 @@
   }
   .rec_pickup .svg_div img {
     width: 270px;
-    margin: 59% 0 0 30%;
+    margin: 70% 0 -20% 30%;
   }
   .maroon_btn{
     background: #900d10;

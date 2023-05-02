@@ -15,17 +15,17 @@ function Dashboard() {
     const [barvalue, setBarvalue] = useState([])
     const [pievalue, setPievalue] = useState([])
     const [ScanResult, setScanResult] = useState({})
-    // const [activeIndex, setActiveIndex] = useState(0);
-    // const ScanData = [
-    //     {
-    //       "name": "Total Pages",
-    //       "value": ScanResult.TotalPages
-    //     },
-    //     {
-    //       "name": "Scanned Pages",
-    //       "value": ScanResult.ScannedPages
-    //     }
-    //   ];
+    const [activeIndex, setActiveIndex] = useState(0);
+    const ScanData = [
+        {
+          "name": "Total Pages",
+          "value": ScanResult.TotalPages
+        },
+        {
+          "name": "Scanned Pages",
+          "value": ScanResult.ScannedPages
+        }
+      ];
 
     const onPieEnter = (index) => {
         console.log(index.name)
@@ -45,8 +45,8 @@ function Dashboard() {
             const res3 = await Dashboardrequest()
             setBarvalue(res3)
 
-            // const ScanRes = await dashbaorScannedPages(localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'))
-            // setScanResult(ScanRes)
+            const ScanRes = await dashbaorScannedPages(localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'))
+            setScanResult(ScanRes)
         }
         data()
     }, [])
@@ -60,63 +60,49 @@ function Dashboard() {
                         <div className='row1'>
 
                             <div className='card1' id="inbound">
-                                <h2 style={{ fontSize: "15px" }}>Inbound </h2>
+                                <h2 style={{ fontSize: "15px" }} className='text-warning'>Inbound </h2>
                                 <div className='content'>
                                     <div className="card_icon">
-                                        <div>
-                                            {/* <FaHeartbeat className='life_icon' /> */}
-                                            <h5 className="life_icon">Life Time</h5>
-                                        </div>
-                                        <h1 className="nums">{data.InwardFileMonth}</h1>
+                                        {/* <div> */}
+                                            <h1 className="nums  text-center">{data.InwardFileMonth}</h1>
+                                            <h5 className="life_icon  text-center">Life Time</h5>
+                                        {/* </div> */}
                                     </div>
-                                    <div className="card_icon" style={{ borderLeft: "2px solid silver" }}>
+                                    <div className="card_icon" >
                                         <div>
-                                            {/* <BsFillCalendarCheckFill className='month_icon' /> */}
-                                            <h5 className="month_icon" >Current Month</h5>
+                                            <h1 className="nums text-center">{data.CurrentMonthFile}</h1>
+                                            <h5 className="life_icon  text-center" >Current Month</h5>
                                         </div>
-                                        <h1 className="nums">{data.CurrentMonthFile}</h1>
                                     </div>
                                 </div>
                             </div>
                             <div className='card1' id="outbound">
-                                <h2 style={{ fontSize: "15px" }}>Outbound</h2>
+                                <h2 style={{ fontSize: "15px" }} className='text-danger'>Outbound</h2>
                                 <div className='content'>
                                     <div className="card_icon">
-                                        <div>
-                                            {/* <FaHeartbeat className='life_icon' /> */}
-                                            <h5 className="life_icon">Life Time</h5>
-                                        </div>
-                                        <h1 className="
-                                        
-                                        
-                                        
-                                        " >{data.TotalOUT}</h1>
+                                        <h1 className="nums text-dark text-center" >{data.TotalOUT}</h1>
+                                        <h5 className="life_icon text-dark text-danger  text-center">Life Time</h5>
                                     </div>
-                                    <div className="card_icon" style={{ borderLeft: "2px solid silver" }}>
+                                    <div className="card_icon" >
                                         <div>
-                                            {/* <BsFillCalendarCheckFill className='month_icon' /> */}
-                                            <h5 className="month_icon" style={{ marginTop: "3px" }}>Current Month</h5>
+                                        <h1 className="nums text-dark text-center" >{data.OUTCURRENTMONTH}</h1>
+                                        <h5 className="life_icon text-dark text-center" style={{ marginTop: "3px" }}>Current Month</h5>
                                         </div>
-                                        <h1 className="nums" >{data.OUTCURRENTMONTH}</h1>
                                     </div>
                                 </div>
                             </div>
                             <div className='card1' id="active">
-                                <h2 style={{ fontSize: "15px" }}>Active</h2>
+                                <h2 style={{ fontSize: "15px" }} className='text-success'>Active</h2>
                                 <div className='content'>
                                     <div className="card_icon">
-                                        <div>
-                                            {/* <FaHeartbeat className='life_icon' /> */}
-                                            <h5 className="life_icon">Life Time</h5>
-                                        </div>
-                                        <h1 className="nums" >{data.LTActivefile}</h1>
+                                        <h1 className="nums text-secondary text-center" >{data.LTActivefile}</h1>
+                                            <h5 className="life_icon text-secondary text-center">Life Time</h5>
                                     </div>
-                                    <div className="card_icon" style={{ borderLeft: "2px solid silver" }}>
+                                    <div className="card_icon" >
                                         <div>
-                                            {/* <BsFillCalendarCheckFill className='month_icon' /> */}
-                                            <h5 className="month_icon" >Current Month</h5>
+                                        <h1 className="nums text-secondary text-center" >{data.Current_month_activefile}</h1>
+                                            <h5 className="life_icon text-secondary text-center" >Current Month</h5>
                                         </div>
-                                        <h1 className="nums" >{data.Current_month_activefile}</h1>
                                     </div>
                                 </div>
                             </div>
@@ -125,59 +111,48 @@ function Dashboard() {
                         </h4>
                         <div className='row2'>
                             <div className='card1' id="inbound">
-                                <h2 style={{ fontSize: "15px" }}>Inbound </h2>
+                                <h2 style={{ fontSize: "15px" }} className='text-warning'>Inbound </h2>
                                 <div className='content'>
                                     <div className="card_icon">
-                                        <div>
-                                            {/* <FaHeartbeat className='life_icon' /> */}
-                                            <h5 className="life_icon">Life Time</h5>
-                                        </div>
-                                        <h1 className="nums" >{data.TotalLIFETIMEInwardbox}</h1>
+                                        <h1 className="nums text-center" >{data.TotalLIFETIMEInwardbox}</h1>
+                                            <h5 className="life_icon text-center">Life Time</h5>
                                     </div>
-                                    <div className="card_icon" style={{ borderLeft: "2px solid silver" }}>
+                                    <div className="card_icon" >
                                         <div>
-                                            {/* <BsFillCalendarCheckFill className='month_icon' /> */}
-                                            <h5 className="month_icon" >Current Month</h5>
+                                        <h1 className="nums text-center" >{data.CurrentInwardbox}</h1>
+                                            <h5 className="life_icon text-center" >Current Month</h5>
                                         </div>
-                                        <h1 className="nums" >{data.CurrentInwardbox}</h1>
                                     </div>
                                 </div>
                             </div>
                             <div className='card1' id="outbound">
-                                <h2 style={{ fontSize: "15px" }}>Outbound </h2>
+                                <h2 style={{ fontSize: "15px" }} className='text-danger'>Outbound </h2>
                                 <div className='content'>
                                     <div className="card_icon">
-                                        <div>
-                                            {/* <FaHeartbeat className='life_icon' /> */}
-                                            <h5 className="life_icon">Life Time</h5>
-                                        </div>
-                                        <h1 className="nums" >{data.outboxLifetime}</h1>
+                                        <h1 className="nums text-dark text-center" >{data.outboxLifetime}</h1>
+                                        <h5 className="life_icon text-dark text-center">Life Time</h5>
                                     </div>
-                                    <div className="card_icon" style={{ borderLeft: "2px solid silver" }}>
+                                    <div className="card_icon" >
                                         <div>
-                                            {/* <BsFillCalendarCheckFill className='month_icon' /> */}
-                                            <h5 className="month_icon" >Current Month</h5>
+                                        <h1 className="nums text-dark text-center" >{data.CurrentOutBox}</h1>
+                                            <h5 className="life_icon text-dark text-center" >Current Month</h5>
                                         </div>
-                                        <h1 className="nums" >{data.CurrentOutBox}</h1>
                                     </div>
                                 </div>
                             </div>
                             <div className='card1' id="active">
-                                <h2 style={{ fontSize: "15px" }}>Active </h2>
+                                <h2 style={{ fontSize: "15px" }} className='text-success'>Active </h2>
                                 <div className='content'>
                                     <div className="card_icon">
-                                        <div>
-                                            {/* <FaHeartbeat className='life_icon' /> */}
-                                            <h5 className="life_icon">Life Time</h5>
-                                        </div>
-                                        <h1 className="nums" >{data.Lifettimeactivebox}</h1>
+                                        <h1 className="nums text-secondary text-center" >{data.Lifettimeactivebox}</h1>
+                                            <h5 className="life_icon text-secondary text-center">Life Time</h5>
                                     </div>
-                                    <div className="card_icon" style={{ borderLeft: "2px solid silver" }}>
+                                    <div className="card_icon" >
                                         <div>
-                                            {/* <BsFillCalendarCheckFill className='month_icon' /> */}
-                                            <h5 className="month_icon">Current Month</h5>
+                                        <h1 className="nums text-secondary text-center" >{data.CurrentMonthActiveBOX}</h1>
+
+                                            <h5 className="life_icon text-secondary text-center">Current Month</h5>
                                         </div>
-                                        <h1 className="nums" >{data.CurrentMonthActiveBOX}</h1>
                                     </div>
                                 </div>
                             </div>
@@ -197,7 +172,7 @@ function Dashboard() {
                                     </BarChart>
                                 </ResponsiveContainer>
                             </div>
-                            {/* <div className='graph' style={{ background: "white" }}>
+                            <div className='graph' style={{ background: "white" }}>
                             <h5 className='text-dark mx-5 mb-3'>Pages Scanned Summary</h5>
                                 <ResponsiveContainer width="100%">
                                     <PieChart width={700} height={200} margin={{top:12, right: 45, bottom: 20 }}>
@@ -210,7 +185,7 @@ function Dashboard() {
                                         <Legend layout="vertical" verticalAlign="top" align="right" />
                                     </PieChart>
                                 </ResponsiveContainer>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                 </div>
