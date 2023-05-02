@@ -140,6 +140,9 @@ function RecordRetrival() {
             <div className="generatorlogcontainer">
                 <Navbar />
                 <div className='rec_retrival'>
+                <div className='svg_div'>
+                        <img src={svg} />
+                    </div>
                     <form style={{ margin: "0px 20px 0px 15px" }}>
                      <h3 className='my-4'>Record Retrival <BsFillChatSquareQuoteFill style={{margin:"0 0 -9px 0",fontSize:"30px"}}/></h3>
                         <br />
@@ -225,9 +228,7 @@ function RecordRetrival() {
                             <button type="submit" className="maroon_btn btn mr-4 float-right mb-4">Reset</button>
                         </div>
                     </form>
-                    <div className='svg_div'>
-                        <img src={svg} />
-                    </div>
+                    
                 </div>
 
             </div>

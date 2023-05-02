@@ -16,16 +16,16 @@ function Dashboard() {
     const [pievalue, setPievalue] = useState([])
     const [ScanResult, setScanResult] = useState({})
     // const [activeIndex, setActiveIndex] = useState(0);
-    const ScanData = [
-        {
-          "name": "Total Pages",
-          "value": ScanResult.TotalPages
-        },
-        {
-          "name": "Scanned Pages",
-          "value": ScanResult.ScannedPages
-        }
-      ];
+    // const ScanData = [
+    //     {
+    //       "name": "Total Pages",
+    //       "value": ScanResult.TotalPages
+    //     },
+    //     {
+    //       "name": "Scanned Pages",
+    //       "value": ScanResult.ScannedPages
+    //     }
+    //   ];
 
     const onPieEnter = (index) => {
         console.log(index.name)
@@ -45,8 +45,8 @@ function Dashboard() {
             const res3 = await Dashboardrequest()
             setBarvalue(res3)
 
-            const ScanRes = await dashbaorScannedPages(localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'))
-            setScanResult(ScanRes)
+            // const ScanRes = await dashbaorScannedPages(localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'))
+            // setScanResult(ScanRes)
         }
         data()
     }, [])
@@ -86,7 +86,11 @@ function Dashboard() {
                                             {/* <FaHeartbeat className='life_icon' /> */}
                                             <h5 className="life_icon">Life Time</h5>
                                         </div>
-                                        <h1 className="nums" >{data.TotalOUT}</h1>
+                                        <h1 className="
+                                        
+                                        
+                                        
+                                        " >{data.TotalOUT}</h1>
                                     </div>
                                     <div className="card_icon" style={{ borderLeft: "2px solid silver" }}>
                                         <div>
@@ -193,7 +197,7 @@ function Dashboard() {
                                     </BarChart>
                                 </ResponsiveContainer>
                             </div>
-                            <div className='graph' style={{ background: "white" }}>
+                            {/* <div className='graph' style={{ background: "white" }}>
                             <h5 className='text-dark mx-5 mb-3'>Pages Scanned Summary</h5>
                                 <ResponsiveContainer width="100%">
                                     <PieChart width={700} height={200} margin={{top:12, right: 45, bottom: 20 }}>
@@ -206,7 +210,7 @@ function Dashboard() {
                                         <Legend layout="vertical" verticalAlign="top" align="right" />
                                     </PieChart>
                                 </ResponsiveContainer>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
