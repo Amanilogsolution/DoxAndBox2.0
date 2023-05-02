@@ -173,6 +173,9 @@ function Shredding() {
             <div className="generatorlogcontainer">
                 <Navbar />
                 <div className='shredding'>
+                <div className='svg_div'>
+                    <img src={svg}/>
+                    </div>
                     <div className='form'>
                         <form style={{ margin: "0px 20px 0px 15px" }}>
                         <h3 className='pb-3'>Shredding request <BsFillChatSquareQuoteFill style={{margin:"0 0 -9px 0",fontSize:"30px"}}/> </h3>
@@ -245,9 +248,7 @@ function Shredding() {
                             </div>
                         </form>
                     </div>
-                    <div className='svg_div'>
-                    <img src={svg}/>
-                    </div>
+                    
                 </div>
 
                 {/* Duplicate Array */}

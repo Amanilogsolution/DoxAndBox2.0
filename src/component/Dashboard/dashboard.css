@@ -64,7 +64,7 @@
   width:50%;
   padding:3px;
   display:flex;
-  justify-content:space-around
+  justify-content:space-between
 }
 #inbound{
   background: linear-gradient(white,white,white,white,white,white,rgb(255, 170, 0));
@@ -115,11 +115,11 @@
   
 }
 .life_icon{
-  font-size: 44px; 
+  font-size: 32px; 
   color:#b51424
  }
 .month_icon{
-  font-size: 38px;
+  font-size: 28px;
    color: #b51424
 }
 @media  screen and (min-width:700px) and (max-width:1000px) 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './login.css'
+import './Login.css'
 import Image from '../../assets/icons/icon-512x5122.png'
 import { UserLogin } from '../../api/index'
 import loginimg from '../Images/loginimg.svg'
@@ -44,12 +44,10 @@ function Login() {
 				setMandatorydata(false)
 			}
 		}
-
 	}
 	return (
 		<>
 			<div className="logincontainer" >
-
 				<div className='login_div'>
 					<div className='login_img_div'>
 						<img src={loginimg} />

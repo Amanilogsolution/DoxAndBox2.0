@@ -70,12 +70,15 @@ function RecordPickup() {
 
     return (
         <>
-            <div className="generatorlogcontainer">
+            <div className="RPgeneratorlogcontainer">
                 <Navbar />
-                <div className='rec_pickup'>
 
+                <div className='rec_pickup'>
+                    <div className='svg_div'>
+                        <img src={svg} />
+                    </div>
                     <form style={{ margin: "0px 15px 0px 15px" }}>
-                        <h3 className='pb-3'>Request for record pickup <BsFillChatSquareQuoteFill style={{margin:"0 0 -9px 0",fontSize:"30px"}}/></h3>
+                        <h3 className='pb-3'>Request for record pickup <BsFillChatSquareQuoteFill style={{ margin: "0 0 -9px 0", fontSize: "30px" }} /></h3>
 
                         <div className="form-group">
                             <label>Location <span style={{ color: "red" }}>*</span></label>
@@ -129,14 +132,12 @@ function RecordPickup() {
                             <button type="submit" className="maroon_btn btn mr-4 float-right mb-4">Reset</button>
                         </div>
                     </form>
-                    <div className='svg_div'>
-                      <img src={svg}/>
-                    </div>
+
                 </div>
 
-            
+
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }
