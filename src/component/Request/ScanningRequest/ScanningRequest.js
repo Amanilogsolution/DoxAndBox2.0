@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import Navbar from '../../Navbar/Navbar';
-import { rmsRequest,Totallocation,IdCount } from '../../../api/index'
+import { rmsRequest,Totallocation,IdCount,Mail } from '../../../api/index'
 import './ScanningReq.css'
 import svg from '../../Images/phoneicon.png'
 import { BsFillChatSquareQuoteFill } from 'react-icons/bs';
@@ -39,10 +39,21 @@ function ScanningRequest() {
         const fileid = locationid + Math.floor(Math.random()*10000000)
         const requestid = locationid +'-'+Math.floor(Math.random()*10000000)+'-'+'SR'
 
+        const message = {
+            Location: localStorage.getItem('Wh_name'),
+            NoofFiles: noof_pages,
+            date: request_date,
+            requestid: requestid,
+            Remark: remark,
+            requestType: 'ScanningRequest'
+
+        }
+
         if (!noof_pages || !onsite || !request_date) {
             setMandatoryfield(true)
         }
         else {
+            const mailresponse = await Mail('ScanningRequest', message);
             const result = await rmsRequest('ScanningRequest', '', '', request_date, '', '', '', '', noof_pages, onsite, '', remark, localStorage.getItem('User_ID'),fileid,locationid,requestid,localStorage.getItem('CUST_ID'),'','','','','','',BookingId)
 
             if(result){

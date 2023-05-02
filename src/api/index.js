@@ -33,7 +33,7 @@ export const ReportData = async (uid_id,location_id) => {
 }
 
 export const Mail = async (Subject,message) => {
-    const url = `https://portalbackend.doxandbox.com/mail`
+    const url = `http://localhost:8008/mail`
     return axios.post(url, {Subject,message}).then(response => response.data).catch(error => console.log(error));
 }
 
