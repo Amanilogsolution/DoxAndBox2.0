@@ -33,7 +33,7 @@ export const ReportData = async (uid_id,location_id) => {
 }
 
 export const Mail = async (Subject,message) => {
-    const url = `https://portalbackend.doxandbox.com/mail`
+    const url = `http://localhost:8008/mail`
     return axios.post(url, {Subject,message}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -96,12 +96,12 @@ export const TotalScanReportCount = async (custid,wh,startdate,enddate) => {
 }
 
 export const IdCount = async (whid) => {
-    const url = `http://localhost:8008/api/idcount`
+    const url = `https://portalbackend.doxandbox.com/api/idcount`
     return axios.post(url, {whid}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const dashbaorScannedPages = async (custid,whid) =>{
-    const url = `http://localhost:8008/api/dashbaorscannedpages`
+    const url = `https://portalbackend.doxandbox.com/api/dashbaorscannedpages`
     return axios.post(url,{custid,whid}).then(response => response.data).catch(error => console.log(error));
 }
 

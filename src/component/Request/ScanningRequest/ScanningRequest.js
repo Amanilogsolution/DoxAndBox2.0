@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import Navbar from '../../Navbar/Navbar';
-import { rmsRequest,Totallocation,IdCount } from '../../../api/index'
+import { rmsRequest,Totallocation,IdCount,Mail } from '../../../api/index'
 import './ScanningReq.css'
 import svg from '../../Images/phoneicon.png'
 import { BsFillChatSquareQuoteFill } from 'react-icons/bs';
@@ -39,10 +39,21 @@ function ScanningRequest() {
         const fileid = locationid + Math.floor(Math.random()*10000000)
         const requestid = locationid +'-'+Math.floor(Math.random()*10000000)+'-'+'SR'
 
+        const message = {
+            Location: localStorage.getItem('Wh_name'),
+            NoofFiles: noof_pages,
+            date: request_date,
+            requestid: requestid,
+            Remark: remark,
+            requestType: 'ScanningRequest'
+
+        }
+
         if (!noof_pages || !onsite || !request_date) {
             setMandatoryfield(true)
         }
         else {
+            const mailresponse = await Mail('ScanningRequest', message);
             const result = await rmsRequest('ScanningRequest', '', '', request_date, '', '', '', '', noof_pages, onsite, '', remark, localStorage.getItem('User_ID'),fileid,locationid,requestid,localStorage.getItem('CUST_ID'),'','','','','','',BookingId)
 
             if(result){
@@ -58,11 +69,10 @@ function ScanningRequest() {
                 <div className='svg_div'>
                       <img src={svg}/>
                     </div>
-                <form style={{ margin: "0px 20px 0px 15px" }}>
+                <form style={{ margin: "0px 20px 0px 15px",boxShadow:"8px 8px 5px 1px grey",padding:"40px 15px 0px",height:"75vh",borderRadius:"7px",background:"white" }}>
                 <h3>Request for Scaning <BsFillChatSquareQuoteFill style={{margin:"0 0 -9px 0",fontSize:"30px"}}/></h3>
                             <br />
                             
-
                             <div className="form-group">
                                 <label>Total no of Pages to be Scanned <span style={{ color: "red" }}>*</span></label>
                                 <input type="number" className="form-control" id='scanned_pages' />
