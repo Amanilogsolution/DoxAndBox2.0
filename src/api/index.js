@@ -104,4 +104,3 @@ export const dashbaorScannedPages = async (custid,whid) =>{
     const url = `https://portalbackend.doxandbox.com/api/dashbaorscannedpages`
     return axios.post(url,{custid,whid}).then(response => response.data).catch(error => console.log(error));
 }
-

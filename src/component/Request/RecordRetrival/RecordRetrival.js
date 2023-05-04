@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../../Navbar/Navbar'
 import './RecordRetrival.css';
-import { rmsRequest, ReportData, ReportdataBoxes } from '../../../api/index'
+import { rmsRequest, ReportData, ReportdataBoxes,IdCount } from '../../../api/index'
 import Select from 'react-select';
 import svg from '../../Images/phoneicon.png'
 import { BsFillChatSquareQuoteFill } from 'react-icons/bs';
@@ -12,7 +12,6 @@ function RecordRetrival() {
     const [mandatoryfield, setMandatoryfield] = useState(false);
     const [totalValues, setTotalValues] = useState([1])
     const [toogle, setToggle] = useState(true)
-
     const [data, setData] = useState([]);
     const [boxes, setBoxes] = useState([])
     const [selectfiles, setSelectFiles] = useState([]);
@@ -21,8 +20,20 @@ function RecordRetrival() {
     const [typedelivery, setTypeDelivery] = useState([]);
     const [selectbox, setSelectBox] = useState([]);
     const [desc, setDesc] = useState([]);
-
     const [filerequest, setFileRequest] = useState()
+    const [BookingId,setBooKingId] = useState()
+
+
+    useEffect(()=>{
+        const fetchdata=async()=>{
+            const whid = localStorage.getItem('Warehouse_ID')
+            const id = await IdCount(whid)
+            const lastno = Number(id[0].RMSBookid) + 1
+            let BookingId = 'BOOK' + '-' + whid + '-' + String(lastno).padStart(6, '0')
+            setBooKingId(BookingId)
+        }
+        fetchdata()    
+    },[])
 
 
     let options = data.map((ele) => {
@@ -53,19 +64,17 @@ function RecordRetrival() {
             // console.log(selectfiles,remarks,typeretrival,typedelivery)
             if (filerequest === 'Files') {
                 selectfiles.map(async (file, index) => {
-                    const result = await rmsRequest('RecorRetrival', '', '', '', '', file, typeretrival[index], typedelivery[index], '', '', '', remarks[index], localStorage.getItem('User_ID'), fileid, locationid, requestid, localStorage.getItem('CUST_ID'), TYPE, '', '', '', '', '')
+                    const result = await rmsRequest('RecorRetrival', '', '', '', '', file, typeretrival[index], typedelivery[index], '', '', '', remarks[index], localStorage.getItem('User_ID'), fileid, locationid, requestid, localStorage.getItem('CUST_ID'), TYPE, '', '', '', '', '',BookingId)
                 })
                 window.location.href = '/Dashboard'
 
             } else {
                 console.log('hello')
                 selectbox.map(async (box, index) => {
-                    const result = await rmsRequest('RecorRetrival', '', '', '', '', '', typeretrival[index], typedelivery[index], '', '', '', remarks[index], localStorage.getItem('User_ID'), fileid, locationid, requestid, localStorage.getItem('CUST_ID'), TYPE, '', '', '', box, desc[index])
+                    const result = await rmsRequest('RecorRetrival', '', '', '', '', '', typeretrival[index], typedelivery[index], '', '', '', remarks[index], localStorage.getItem('User_ID'), fileid, locationid, requestid, localStorage.getItem('CUST_ID'), TYPE, '', '', '', box, desc[index],BookingId)
                 })
                 window.location.href = '/Dashboard'
-
             }
-
         }
     }
 
@@ -77,7 +86,6 @@ function RecordRetrival() {
             setToggle(true)
             const result = await ReportData(localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'))
             setData(result)
-
         }
         else {
             setFileRequest('Boxes')
