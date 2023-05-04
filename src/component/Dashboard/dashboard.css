@@ -1,13 +1,11 @@
 .dashboardcontainer .dashboardwrapper {
     width: 100%;
-    min-height:105vh;
+    min-height:113vh;
     padding-top: 52px;
     background: url('../Images/dashbg.webp');
     background-size: 100% 100%;
 }
-.title{
-  color: rgb(128, 128, 128);
-}
+
 .dashboardcontainer .dashboardwrapper .dashboardstatuscard {
     width: 100%;
     position: relative;
@@ -15,16 +13,16 @@
 }
 .dashboardstatuscard .row1 {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   /* border: 1px solid rgb(36, 9, 9); */
   margin-bottom: 20px;
 }
 .dashboardstatuscard .row1 .card1{
-  width: 28%;
-  min-height: 15vh;
+  width: 27%;
+  min-height: 20vh;
   margin: 0 10px;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   /* box-shadow: 1px 1px 6px 1px rgb(91, 91, 91); */
 }
 .card1 .content{
@@ -33,16 +31,16 @@
 }
 .dashboardstatuscard .row2 {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   /* border: 1px solid rgb(36, 9, 9); */
 }
 
 .dashboardstatuscard .row2 .card1{
-  width: 28%;
+  width: 27%;
   min-height: 15vh;
   margin: 0 10px;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   /* box-shadow: 1px 1px 6px 1px rgb(91, 91, 91); */
 }
 
@@ -51,6 +49,7 @@
   justify-content: center;
   margin-top: 20px ;
   margin-bottom: 10px;
+  /* border: 1px solid; */
 }
 .dashboardstatuscard .row3 .graph{
   width:41%;
@@ -60,39 +59,32 @@
   /* box-shadow: 1px 1px 6px 1px rgb(91, 91, 91); */
   padding: 10px;
 }
-.card_icon {
-  width:50%;
-  padding:3px;
-  display:flex;
-  flex-direction: column;
-  justify-content:space-between
-}
+
 #inbound{
-  background: linear-gradient(rgb(49, 47, 47),rgb(49, 47, 47),rgb(49, 47, 47),rgb(49, 47, 47),rgb(49, 47, 47),rgb(49, 47, 47),rgb(49, 47, 47));
+  background: #303030;
 }
 #outbound{
-  background: linear-gradient(rgb(211, 207, 207),rgb(211, 207, 207),rgb(211, 207, 207),rgb(211, 207, 207),rgb(211, 207, 207),rgb(211, 207, 207),rgb(211, 207, 207));
+  background:white;
 }
 #active{
-  background: linear-gradient(white,white,white,white,white,white,white);
+  background: rgb(228, 255, 228);
 }
 ::-webkit-scrollbar {
   width: 7px;
-  background: #2f2f2f;
+  background: #2f2f2f0f;
 }
 ::-webkit-scrollbar-thumb {
   background: #adaeae; 
   border-radius: 10px;
   /* border: 1px solid white; */
 }
-.nums{
-  color: white;
-}
+
 @media  screen and (max-width:700px) 
 {
   .dashboardstatuscard .row2 {
     display: block;
     padding-left: 10px;
+    ;
   }
   .dashboardstatuscard .row1 {
     display: block;
@@ -115,34 +107,25 @@
   }
   
 }
-.life_icon{
-  font-size: 20px; 
-  color:white
- }
-.month_icon{
-  font-size: 28px;
-   color: #b51424
-}
-@media  screen and (min-width:700px) and (max-width:1000px) 
-{
-  .nums{
-    font-size: 25px;
-  }
-  .title{
-    font-size: 13px;
-  }
-  .life_icon{
-    font-size: 35px; 
-   }
-  .month_icon{
-    font-size: 28px;
-  }
-}
+
 .dash_heading{
   margin: 13px 8.5%;
   width: 82%;
   padding: 0 0 5px 0;
   color: rgb(113, 113, 113);
+}
+@media  screen and (min-width:700px) and (max-width:1200px) 
+{
+  .dashboardstatuscard .row1 .card1{
+    width: 31.8%;
+  }
+  .dashboardstatuscard .row2 .card1{
+    width: 31.8%;
+  }
+  .dashboardstatuscard .row3 .graph{
+    width:48%;
+  }
+  
 }
 
 

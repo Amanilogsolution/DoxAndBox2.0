@@ -1,8 +1,8 @@
 import Navbar from '../Navbar/Navbar'
 import React, { useEffect, useState } from 'react';
 import './dashboard.css'
-import { Dashboardetails, Dashboardrequest, DashbaordetailsPie,dashbaorScannedPages } from '../../api/index';
-import { BsFillCalendarCheckFill } from 'react-icons/bs';
+import { Dashboardetails, Dashboardrequest, DashbaordetailsPie, dashbaorScannedPages } from '../../api/index';
+import { BsFillCalendarCheckFill, BsCheckAll,BsBoxArrowInDownLeft,BsBoxArrowUpRight } from 'react-icons/bs';
 import { FaHeartbeat, FaBox, FaFile } from 'react-icons/fa';
 import Footer from '../Navbar/Footer.js'
 
@@ -18,14 +18,14 @@ function Dashboard() {
     const [activeIndex, setActiveIndex] = useState(0);
     const ScanData = [
         {
-          "name": "Total Pages",
-          "value": ScanResult.TotalPages
+            "name": "Total Pages",
+            "value": ScanResult.TotalPages
         },
         {
-          "name": "Scanned Pages",
-          "value": ScanResult.ScannedPages
+            "name": "Scanned Pages",
+            "value": ScanResult.ScannedPages
         }
-      ];
+    ];
 
     const onPieEnter = (index) => {
         console.log(index.name)
@@ -52,114 +52,139 @@ function Dashboard() {
     }, [])
     return (
         <>
-            <div className="dashboardcontainer " >
+            <div className="dashboardcontainer" >
                 <Navbar />
                 <div className='dashboardwrapper'>
                     <div className='dashboardstatuscard' >
-                        <h4 className='dash_heading text-light'>Files <FaFile style={{ fontSize: "18px", margin: "0 0 -2px 0" }} /></h4>
+                        <h4 className='dash_heading text-light'>Files <FaFile style={{  background: "rgba(255, 255, 255,0.4)", color: "rgb(255, 255, 255)", fontSize: "28px", padding: "5px", borderRadius: "5px",marginBottom:"-6px" }} /></h4>
                         <div className='row1'>
 
                             <div className='card1' id="inbound">
-                                <h2 style={{ fontSize: "15px" }} className='text-warning'>Inbound </h2>
-                                <div className='content'>
-                                    <div className="card_icon">
-                                        {/* <div> */}
-                                            <h1 className="nums  text-center">{data.InwardFileMonth}</h1>
-                                            <h5 className="life_icon  text-center">Life Time</h5>
-                                        {/* </div> */}
+                                <div className='d-flex'>
+                                    <BsBoxArrowInDownLeft style={{ background: "#564535", color: "#db8d46", fontSize: "40px", padding: "5px", borderRadius: "5px" }} />
+                                    <p style={{fontSize:"15px",fontWeight:"600"}}className='text-light mx-3 mt-2'>Inbound</p>
+                                </div>
+                                <div className='content d-flex justify-content-center' style={{marginTop:"-8px"}}>
+                                    <div style={{padding:"0 12%",borderRight:"1px solid white"}}>
+                                         <h1 className='text-light'>{data.InwardFileMonth}</h1>
+                                         <p style={{fontSize:"15px",marginTop:"-14px"}}className='text-light'>Life Time</p>
                                     </div>
-                                    <div className="card_icon" >
-                                        <div>
-                                            <h1 className="nums text-center">{data.CurrentMonthFile}</h1>
-                                            <h5 className="life_icon  text-center" >Current Month</h5>
-                                        </div>
+                                    <div style={{padding:"0 12%"}}>
+                                         <h1 className='text-light'>{data.CurrentMonthFile}</h1>
+                                         <p  style={{fontSize:"15px",marginTop:"-14px"}}className='text-light'>Current Month</p>
                                     </div>
                                 </div>
                             </div>
+                            
+
                             <div className='card1' id="outbound">
-                                <h2 style={{ fontSize: "15px" }} className='text-danger'>Outbound</h2>
-                                <div className='content'>
-                                    <div className="card_icon">
-                                        <h1 className="nums text-dark text-center" >{data.TotalOUT}</h1>
-                                        <h5 className="life_icon text-dark text-danger  text-center">Life Time</h5>
+                                <div className='d-flex'>
+                                    <BsBoxArrowUpRight style={{ background: "#f1e1f7", color: "#bb6bd9", fontSize: "40px", padding: "7px", borderRadius: "5px" }} />
+                                    <p style={{fontSize:"15px",fontWeight:"600"}}className='text-dark mx-3 mt-2'>Outbound</p>
+                                </div>
+                                <div className='content d-flex justify-content-center' style={{marginTop:"-8px"}}>
+                                    <div style={{padding:"0 12%",borderRight:"1px solid gray"}}>
+                                         <h1 className='text-dark'>{data.TotalOUT}</h1>
+                                         <p style={{fontSize:"15px",marginTop:"-14px"}}className='text-dark'>Life Time</p>
                                     </div>
-                                    <div className="card_icon" >
-                                        <div>
-                                        <h1 className="nums text-dark text-center" >{data.OUTCURRENTMONTH}</h1>
-                                        <h5 className="life_icon text-dark text-center" style={{ marginTop: "3px" }}>Current Month</h5>
-                                        </div>
+                                    <div style={{padding:"0 12%"}}>
+                                         <h1 className='text-dark'>{data.OUTCURRENTMONTH}</h1>
+                                         <p  style={{fontSize:"15px",marginTop:"-14px"}}className='text-dark'>Current Month</p>
                                     </div>
                                 </div>
                             </div>
+
+
                             <div className='card1' id="active">
-                                <h2 style={{ fontSize: "15px" }} className='text-success'>Active</h2>
-                                <div className='content'>
-                                    <div className="card_icon">
-                                        <h1 className="nums text-secondary text-center" >{data.LTActivefile}</h1>
-                                            <h5 className="life_icon text-secondary text-center">Life Time</h5>
+                                <div className='d-flex'>
+                                    <BsCheckAll style={{ background: "rgba(48, 230, 34,0.2)", color: "#48cf3e", fontSize: "40px", padding: "3px", borderRadius: "5px" }} />
+                                    <p style={{fontSize:"15px",fontWeight:"600"}}className='text-success mx-3 mt-2'>Active</p>
+                                </div>
+                                <div className='content d-flex justify-content-center' style={{marginTop:"-8px"}}>
+                                    <div style={{padding:"0 12%",borderRight:"1px solid gray"}}>
+                                         <h1 className='text-dark'>{data.LTActivefile}</h1>
+                                         <p style={{fontSize:"15px",marginTop:"-14px"}}className='text-dark'>Life Time</p>
                                     </div>
-                                    <div className="card_icon" >
-                                        <div>
-                                        <h1 className="nums text-secondary text-center" >{data.Current_month_activefile}</h1>
-                                            <h5 className="life_icon text-secondary text-center" >Current Month</h5>
-                                        </div>
+                                    <div style={{padding:"0 12%"}}>
+                                         <h1 className='text-dark'>{data.Current_month_activefile}</h1>
+                                         <p  style={{fontSize:"15px",marginTop:"-14px"}}className='text-dark'>Current Month</p>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-                        <h4 className='dash_heading'>Boxes <FaBox style={{ fontSize: "18px", margin: "0 0 -2px 0" }} />
+                        <h4 className='dash_heading'>Boxes <FaBox  style={{  background: "rgba(130, 130, 130,0.3)", color: "rgb(64, 64, 64)", fontSize: "28px", padding: "5px", borderRadius: "5px",marginBottom:"-6px" }} />
                         </h4>
                         <div className='row2'>
-                            <div className='card1' id="inbound">
-                                <h2 style={{ fontSize: "15px" }} className='text-warning'>Inbound </h2>
-                                <div className='content'>
-                                    <div className="card_icon">
-                                        <h1 className="nums text-center" >{data.TotalLIFETIMEInwardbox}</h1>
-                                            <h5 className="life_icon text-center">Life Time</h5>
+                        <div className='card1' id="inbound">
+                                <div className='d-flex'>
+                                    <BsBoxArrowInDownLeft style={{ background: "#564535", color: "#db8d46", fontSize: "40px", padding: "5px", borderRadius: "5px" }} />
+                                    <p style={{fontSize:"15px",fontWeight:"600"}}className='text-light mx-3 mt-2'>Inbound</p>
+                                </div>
+                                <div className='content d-flex justify-content-center' style={{marginTop:"-8px"}}>
+                                    <div style={{padding:"0 12%",borderRight:"1px solid white"}}>
+                                         <h1 className='text-light'>{data.TotalLIFETIMEInwardbox}</h1>
+                                         <p style={{fontSize:"15px",marginTop:"-14px"}}className='text-light'>Life Time</p>
                                     </div>
-                                    <div className="card_icon" >
-                                        <div>
-                                        <h1 className="nums text-center" >{data.CurrentInwardbox}</h1>
-                                            <h5 className="life_icon text-center" >Current Month</h5>
-                                        </div>
+                                    <div style={{padding:"0 12%"}}>
+                                         <h1 className='text-light'>{data.CurrentInwardbox}</h1>
+                                         <p  style={{fontSize:"15px",marginTop:"-14px"}}className='text-light'>Current Month</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className='card1' id="outbound">
-                                <h2 style={{ fontSize: "15px" }} className='text-danger'>Outbound </h2>
-                                <div className='content'>
-                                    <div className="card_icon">
-                                        <h1 className="nums text-dark text-center" >{data.outboxLifetime}</h1>
-                                        <h5 className="life_icon text-dark text-center">Life Time</h5>
-                                    </div>
-                                    <div className="card_icon" >
-                                        <div>
-                                        <h1 className="nums text-dark text-center" >{data.CurrentOutBox}</h1>
-                                            <h5 className="life_icon text-dark text-center" >Current Month</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='card1' id="active">
-                                <h2 style={{ fontSize: "15px" }} className='text-success'>Active </h2>
-                                <div className='content'>
-                                    <div className="card_icon">
-                                        <h1 className="nums text-secondary text-center" >{data.Lifettimeactivebox}</h1>
-                                            <h5 className="life_icon text-secondary text-center">Life Time</h5>
-                                    </div>
-                                    <div className="card_icon" >
-                                        <div>
-                                        <h1 className="nums text-secondary text-center" >{data.CurrentMonthActiveBOX}</h1>
 
-                                            <h5 className="life_icon text-secondary text-center">Current Month</h5>
-                                        </div>
+                            <div className='card1' id="outbound">
+                                <div className='d-flex'>
+                                    <BsBoxArrowUpRight style={{ background: "#f1e1f7", color: "#bb6bd9", fontSize: "40px", padding: "7px", borderRadius: "5px" }} />
+                                    <p style={{fontSize:"15px",fontWeight:"600"}}className='text-dark mx-3 mt-2'>Outbound</p>
+                                </div>
+                                <div className='content d-flex justify-content-center' style={{marginTop:"-8px"}}>
+                                    <div style={{padding:"0 12%",borderRight:"1px solid gray"}}>
+                                         <h1 className='text-dark'>{data.outboxLifetime}</h1>
+                                         <p style={{fontSize:"15px",marginTop:"-14px"}}className='text-dark'>Life Time</p>
+                                    </div>
+                                    <div style={{padding:"0 12%"}}>
+                                         <h1 className='text-dark'>{data.CurrentOutBox}</h1>
+                                         <p  style={{fontSize:"15px",marginTop:"-14px"}}className='text-dark'>Current Month</p>
                                     </div>
                                 </div>
                             </div>
+
+                            <div className='card1' id="active">
+                                <div className='d-flex'>
+                                    <BsCheckAll style={{ background: "rgba(48, 230, 34,0.2)", color: "#48cf3e", fontSize: "40px", padding: "3px", borderRadius: "5px" }} />
+                                    <p style={{fontSize:"15px",fontWeight:"600"}}className='text-success mx-3 mt-2'>Active</p>
+                                </div>
+                                <div className='content d-flex justify-content-center' style={{marginTop:"-8px"}}>
+                                    <div style={{padding:"0 12%",borderRight:"1px solid gray"}}>
+                                         <h1 className='text-dark'>{data.Lifettimeactivebox}</h1>
+                                         <p style={{fontSize:"15px",marginTop:"-14px"}}className='text-dark'>Life Time</p>
+                                    </div>
+                                    <div style={{padding:"0 12%"}}>
+                                         <h1 className='text-dark'>{data.CurrentMonthActiveBOX}</h1>
+                                         <p  style={{fontSize:"15px",marginTop:"-14px"}}className='text-dark'>Current Month</p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div className='row3'>
-                            <div className='graph' style={{ background: "white" }}>
-                                <h5 className='text-light mx-5 mb-3'>Bar Chart - Dox & Box</h5>
+                        <div className='graph' style={{ background: "white" }}>
+                                <h5 className='text-dark mx-5 mb-3'>Pages Scanned Summary</h5>
+                                <ResponsiveContainer width="100%">
+                                    <PieChart width={700} height={200} margin={{ top: 12, bottom: 20 }}>
+                                        <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.8)", borderRadius: "3px" }} />
+                                        <Pie labelLine={false} data={ScanData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={50} outerRadius={80} fill="rgb(94, 4, 69)" label>
+                                            {ScanData.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                            ))}
+                                        </Pie>
+                                        <Legend layout="vertical" verticalAlign="top" align="right" />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                            </div>
+                            <div className='graph' style={{ background: "#e0e0e0" }}>
+                                <h5 className='text-secondary mx-5 mb-3'>Bar Chart - Dox & Box</h5>
                                 <ResponsiveContainer >
                                     <BarChart width={600} height={280} data={barvalue} margin={{ right: 45, bottom: 13 }}>
                                         <CartesianGrid />
@@ -170,20 +195,6 @@ function Dashboard() {
                                         <Bar dataKey="Active" fill="red" barSize={8} />
                                         {/* <Legend /> */}
                                     </BarChart>
-                                </ResponsiveContainer>
-                            </div>
-                            <div className='graph' style={{ background: "white" }}>
-                            <h5 className='text-dark mx-5 mb-3'>Pages Scanned Summary</h5>
-                                <ResponsiveContainer width="100%">
-                                    <PieChart width={700} height={200} margin={{top:12, right: 45, bottom: 20 }}>
-                                        <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.8)",  borderRadius: "3px"}}  />
-                                        <Pie labelLine={false} data={ScanData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={50} outerRadius={80} fill="rgb(94, 4, 69)" label>
-                                            {ScanData.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
-                                            ))}
-                                        </Pie>
-                                        <Legend layout="vertical" verticalAlign="top" align="right" />
-                                    </PieChart>
                                 </ResponsiveContainer>
                             </div>
                         </div>
