@@ -4,7 +4,7 @@ import { Redirect, Route } from 'react-router-dom';
 
  const PrivatRoute = ({component:Component, ...rest}) =>{
 
-     const auth = localStorage.getItem('CUST_ID');
+     const auth = localStorage.getItem('User_ID');
           
      return(
          <Route {...rest} render={props =>(

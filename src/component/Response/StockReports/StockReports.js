@@ -118,7 +118,17 @@ function StockReports() {
       if (day < 10) day = "0" + day;
       var startDate = year + "-" + month + "-" + "01";
       var endDate = year + "-" + month + "-" + day;
-      const response = await rmsReports('Stock', localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'), '', '')
+
+      var department 
+      if(localStorage.getItem("Dptname") !== 'null'){
+        department = localStorage.getItem("Dptname")
+    }else{
+      department = 'not_null'
+    }
+
+      const response = await rmsReports('Stock', localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'), '', '',department)
+
+      console.log(response)
 
       setData(response)
       if (response) {

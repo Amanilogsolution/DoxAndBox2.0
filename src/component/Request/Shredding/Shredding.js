@@ -21,7 +21,7 @@ function Shredding() {
 
     useEffect(() => {
         const data = async () => {
-            const result = await ReportData(localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'))
+            const result = await ReportData(localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'),'All')
             console.log(result)
             setData(result)
             const Totallocationresult = await Totallocation();
@@ -45,16 +45,12 @@ function Shredding() {
         const fileid = locationid + Math.floor(Math.random() * 10000000)
         const requestid = locationid + '-' + Math.floor(Math.random() * 10000000) + '-' + 'SR'
 
-
-        console.log(onsite, locationid, fileid)
-
         if (!onsite || !request_date) {
             setMandatoryfield(true)
         }
         else {
             if (noof_pages) {
                 const result = await rmsRequest('ShreddingRequest', '', '', request_date, '', '', '', '', noof_pages, onsite, '', remark, localStorage.getItem('User_ID'), fileid, locationid.requestid, localStorage.getItem('CUST_ID'));
-                // console.log(result)
 
             } else if (exceldata.length > 0) {
 
@@ -70,9 +66,8 @@ function Shredding() {
                     return res
                 }
                 const duplicatearray = duplicate(exceldata, result)
-                // console.log(duplicatearray)
+             
                 if (duplicatearray.length > 0) {
-                    console.log('Hi', duplicatearray)
                     setDuplicate(duplicatearray)
                     document.getElementById('duplicatemodal').style.display = "block"
                 } else {
@@ -91,7 +86,6 @@ function Shredding() {
                     const file_name = datas.value
 
                     const result = await rmsRequest('ShreddingRequest', '', '', request_date, '', file_name, '', '', '', onsite, '', remark, localStorage.getItem('User_ID'), fileid, locationid, requestid, localStorage.getItem('CUST_ID'));
-
                 })
                 window.location.href = '/Dashboard'
 
@@ -116,7 +110,7 @@ function Shredding() {
         const reader = new FileReader();
         reader.onload = (evt) => {
             const bstr = evt.target.result;
-            // console.log('hki',bstr)
+          
             const wb = XLSX.read(bstr, { type: "binary" });
             const wsname = wb.SheetNames[0];
             const ws = wb.Sheets[wsname];
@@ -172,12 +166,15 @@ function Shredding() {
         <>
             <div className="generatorlogcontainer">
                 <Navbar />
+              
                 <div className='shredding'>
                 <div className='svg_div'>
+                
                     <img src={svg}/>
                     </div>
                     <div className='form'>
-                        <form style={{ margin: "0px 20px 0px 15px" }}>
+                        <form style={{ margin: "0px 20px 0px 15px",boxShadow:"8px 8px 5px 1px grey",padding:"40px 15px 0px",minHeight:"80vh",borderRadius:"7px",background:"white" }}>
+                   
                         <h3 className='pb-3'>Shredding request <BsFillChatSquareQuoteFill style={{margin:"0 0 -9px 0",fontSize:"30px"}}/> </h3>
                             <div className="form-group " >
                                 <label>On Site Shredding <span style={{ color: "red" }}>*</span></label>
@@ -216,6 +213,7 @@ function Shredding() {
                                         isMulti={true}
                                         onChange={handleChange}
                                     />
+
                                 </div>
                                 <div className="form-group" id="PagesToBeShred" style={{ display: "none" }}>
                                     <label>Shredd *</label>

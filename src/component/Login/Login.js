@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Login.css'
-import Image from '../../assets/icons/icon-512x5122.png'
+// import Image from '../../assets/icons/icon-512x5122.png'
 import { UserLogin } from '../../api/index'
 import loginimg from '../Images/loginimg.svg'
 import logo from '../Images/logo.png'
@@ -22,22 +22,37 @@ function Login() {
 		e.preventDefault()
 		const uid_id = document.getElementById('user').value;
 		const uid_pass = document.getElementById('password').value;
-
 		if (!uid_id || !uid_pass) {
 			setMandatorydata(true)
 			setShowerror(false)
 		}
 		else {
 			const result = await UserLogin(uid_id, uid_pass)
-			console.log(result)
 			if (result) {
-				window.location.href = '/Dashboard'
-				localStorage.setItem('CUST_ID', result.CUST_ID)
-				localStorage.setItem('Warehouse_ID', result.WHID)
-				localStorage.setItem('Login_Warehouse_ID', result.WHID)
-				localStorage.setItem('User_ID', result.UID)
-				localStorage.setItem('User_Name', result.cust_name)
-				localStorage.setItem('Wh_name', result.uwh)
+
+				console.log(result)
+				if(result.Requestid){
+					console.log(result)
+					localStorage.setItem('CUST_ID', result.Custid)
+					localStorage.setItem('Wh_name', result.whid)
+					// localStorage.setItem('Login_Warehouse_ID', result.WHID)
+					localStorage.setItem('User_ID', result.Allotempid)
+					localStorage.setItem('User_Name', result.Allotempname)
+					localStorage.setItem('Req_id', result.Requestid)
+					// localStorage.setItem('Dptname', result.Dptname)
+					// localStorage.setItem('Employee',result.uName)	
+					window.location.href = '/UserLogindetails'
+				}else{
+					localStorage.setItem('CUST_ID', result.CUST_ID)
+					localStorage.setItem('Warehouse_ID', result.WHID)
+					localStorage.setItem('Login_Warehouse_ID', result.WHID)
+					localStorage.setItem('User_ID', result.UID)
+					localStorage.setItem('User_Name', result.cust_name)
+					localStorage.setItem('Wh_name', result.uwh)
+					localStorage.setItem('Dptname', result.Dptname)
+					localStorage.setItem('Employee',result.uName)	
+					 window.location.href = '/Dashboard'
+			}
 			}
 			else {
 				setShowerror(true)
@@ -55,7 +70,6 @@ function Login() {
 						<hr style={{background:"white",marginTop:"-16px"}}/>
 					</div>
 					<div className='login_content_div'>
-						
 						<div className='login_box'>
 							<div className="logo">
 								<img src={logo} style={{ margin: "15px 45px " }} />
@@ -91,12 +105,7 @@ function Login() {
 			</div>
 			<Footer/>
 		</>
-
 	)
 }
 
 export default Login
-
-
-//snm001
-//alpha01

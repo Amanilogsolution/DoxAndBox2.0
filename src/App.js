@@ -21,15 +21,17 @@ import OtherReport from './component/Response/OtherRequestReport/OtherRequest';
 import ShreddingRequest from './component/Response/ShreddingReports/ShreddingRequest';
 import ScanningRequestReport from './component/Response/ScanningRequestReport/ScanningRequest';
 import BoxReport from './component/Response/BoxReport/Boxreport'
+import ScanningBasicdetails from './component/Users/ScanningBasicdetails';
+import PickupBasicdetails from './component/Users/PickupBasicDetails';
+import UserLogindetails from './component/Users/UserLogindetails';
+import UpdateScanningBasicdetails from './component/Users/UpdateScanningBasicdetails';
+import UpdatePickupBasicDetails from './component/Users/UpdatePickupBasicDetails';
 // import PagenotFound from './component/Home/Home';
 
 function App() {
-
-
   return (
     <>
         <Router>
-   
                 <Route path="/" exact component={Login}/>
                 <PrivatRoute path="/Profile" exact component={Profile}/>
                 <PrivatRoute path="/Dashboard"   component={Dashboard} />
@@ -49,6 +51,12 @@ function App() {
                 <PrivatRoute path="/ShreddingRequestReport"   component={ShreddingRequest}/>
                 <PrivatRoute path="/ScanningRequestReport"   component={ScanningRequestReport}/>
                 <PrivatRoute path="/BoxReport"   component={BoxReport}/>
+                <PrivatRoute path="/ScanningBasicDetails"   component={ScanningBasicdetails}/>
+                <PrivatRoute path="/PickupBasicdetails"   component={PickupBasicdetails}/>
+                <PrivatRoute path="/UserLogindetails"   component={UserLogindetails}/>
+                <PrivatRoute path="/updatescanningbasicdetails"   component={UpdateScanningBasicdetails}/>
+                <PrivatRoute path="/updatepickupbasicdetails"   component={UpdatePickupBasicDetails}/>
+
                 {/* <Route path="*"  exact component={PagenotFound}/> */}
              
         </Router>

@@ -4,14 +4,13 @@
     z-index: 2;
     position: fixed;
     padding: 10px;
-
     background: #222222ef;
     display: flex;
 }
 .brand_slidericon{
-    /* border: 1px solid white; */
     width: 270px;
 }
+
 .brand_slidericon p{
     font-size: 20px;
     color: white;

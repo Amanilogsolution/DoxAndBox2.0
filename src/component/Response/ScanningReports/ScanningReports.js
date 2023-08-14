@@ -121,8 +121,16 @@ function ScanningReports() {
       var startDate = year + "-" + month + "-" + "01";
       var endDate = year + "-" + month + "-" + day;
 
-      const response = await rmsReports('Scanning', localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'), startDate, endDate)
-      const Scancount = await TotalScanReportCount(localStorage.getItem('CUST_ID'),localStorage.getItem('Warehouse_ID'),startDate,endDate)
+
+      var department 
+      if(localStorage.getItem("Dptname")){
+         department = localStorage.getItem("Dptname")
+      }else{
+         department = 'Not_null'
+      }
+
+      const response = await rmsReports('Scanning', localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'), startDate, endDate,department)
+      const Scancount = await TotalScanReportCount(localStorage.getItem('CUST_ID'),localStorage.getItem('Warehouse_ID'),startDate,endDate,department)
       console.log(Scancount[0].TotalFile)
       setPageScan(Scancount[0].Pagescan)
       setTotalFile(Scancount[0].TotalFile)
@@ -145,9 +153,16 @@ function ScanningReports() {
     const val2 = Moment(e[1]).format("YYYY-MM-DD");
     setToggle(false)
 
-    const response = await rmsReports('Scanning', localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'), val1, val2)
+    var department 
+    if(localStorage.getItem("Dptname") !== 'null'){
+      department = localStorage.getItem("Dptname")
+    }else{
+      department = 'not_null'
+    }
 
-    const Scancount2 = await TotalScanReportCount(localStorage.getItem('CUST_ID'),localStorage.getItem('Warehouse_ID'),val1,val2)
+    const response = await rmsReports('Scanning', localStorage.getItem('CUST_ID'), localStorage.getItem('Warehouse_ID'), val1, val2,department)
+
+    const Scancount2 = await TotalScanReportCount(localStorage.getItem('CUST_ID'),localStorage.getItem('Warehouse_ID'),val1,val2,department)
     setPageScan(Scancount2[0].Pagescan)
 
 

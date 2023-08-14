@@ -1,6 +1,6 @@
 .dashboardcontainer .dashboardwrapper {
     width: 100%;
-    min-height:113vh;
+    min-height:120vh;
     padding-top: 52px;
     background: url('../Images/dashbg.webp');
     background-size: 100% 100%;
@@ -19,10 +19,12 @@
 }
 .dashboardstatuscard .row1 .card1{
   width: 27%;
-  min-height: 20vh;
+  min-height: 15vh;
   margin: 0 10px;
   border-radius: 5px;
   padding: 10px;
+
+
   /* box-shadow: 1px 1px 6px 1px rgb(91, 91, 91); */
 }
 .card1 .content{

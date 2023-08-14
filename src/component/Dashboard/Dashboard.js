@@ -32,7 +32,7 @@ function Dashboard() {
         window.location.href = `/${index.name}Report`
     }
 
-    const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", '#333'];
+    const COLORS = ["#0088FE", "#00C49F"];
 
     useEffect(() => {
         const data = async () => {
@@ -50,6 +50,9 @@ function Dashboard() {
         }
         data()
     }, [])
+
+    const auth = localStorage.getItem('CUST_ID')
+    if(auth){
     return (
         <>
             <div className="dashboardcontainer" >
@@ -169,10 +172,10 @@ function Dashboard() {
 
                         </div>
                         <div className='row3'>
-                        <div className='graph' style={{ background: "white" }}>
+                        {/* <div className='graph' style={{ background: "white" }}>
                                 <h5 className='text-dark mx-5 mb-3'>Pages Scanned Summary</h5>
                                 <ResponsiveContainer width="100%">
-                                    <PieChart width={700} height={200} margin={{ top: 12, bottom: 20 }}>
+                                    <PieChart width={700} height={180} margin={{ top: 10, bottom: 18 }}>
                                         <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.8)", borderRadius: "3px" }} />
                                         <Pie labelLine={false} data={ScanData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={50} outerRadius={80} fill="rgb(94, 4, 69)" label>
                                             {ScanData.map((entry, index) => (
@@ -182,7 +185,28 @@ function Dashboard() {
                                         <Legend layout="vertical" verticalAlign="top" align="right" />
                                     </PieChart>
                                 </ResponsiveContainer>
+                            </div> */}
+
+                            <div className='graph' style={{ background: "#e0e0e0" }}>
+                                <h5 className='text-secondary mx-5 mb-3'>Pages Scanned Summary</h5>
+                                <ResponsiveContainer >
+                                    <BarChart width={600} height={280} data={ScanData} margin={{ right: 45, bottom: 13 }}>
+                                        <CartesianGrid />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.8)", borderRadius: "3px" }} />
+                                        {/* <Legend /> */}
+                                        <Bar dataKey="value" fill="black" barSize={20}>
+                                        {ScanData.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                            ))}
+                                        </Bar>
+                                        {/* <Legend /> */}
+                                    </BarChart>
+                                </ResponsiveContainer>
                             </div>
+
+
                             <div className='graph' style={{ background: "#e0e0e0" }}>
                                 <h5 className='text-secondary mx-5 mb-3'>Bar Chart - Dox & Box</h5>
                                 <ResponsiveContainer >
@@ -204,6 +228,16 @@ function Dashboard() {
             <Footer />
         </>
     )
+        }
+        else{
+            return (
+                <>
+                     <div className="dashboardcontainer" >
+                <Navbar />
+                </div>
+                </>
+            )
+        }
 }
 
 export default Dashboard;

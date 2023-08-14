@@ -69,9 +69,10 @@
     }
     .rec_pickup form{
       width: 100%;
+      height: 100vh;
+      border: 2px solid red;
     }
     .rec_pickup{
-
       padding: 100px 5px 0;
    }
   
